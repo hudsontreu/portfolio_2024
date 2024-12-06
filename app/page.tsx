@@ -1,19 +1,20 @@
 import Image from "next/image";
-import HeroArt from "./components/heroArt";
+import HeroArt from "./components/hero-art";
+import styles from "./page.module.css";
 
 export default function Home() {
   return (
-    <div className="flex flex-col h-[calc(100vh-2rem)]">
-      <div className="p-8 space-y-2">
-        <div className="space-y-1">
-          <h1 className="text-4xl font-bold">DESIGN</h1>
-          <h2 className="text-4xl font-bold">TECHNOLOGIST</h2>
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <div className={styles.titleGroup}>
+          <h1 className={styles.title}>DESIGN</h1>
+          <h2 className={styles.title}>TECHNOLOGIST</h2>
         </div>
-        <p className="max-w-md text-muted-foreground">
+        <p className={styles.description}>
           Exploring the potential of generative AI to transform perceptual experiences in digital media.
         </p>
       </div>
-      <div className="flex-1 relative">
+      <div className={styles.heroContainer}>
         <HeroArt />
       </div>
     </div>

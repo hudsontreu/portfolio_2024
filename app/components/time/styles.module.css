@@ -1,0 +1,5 @@
+.time {
+  font-size: 0.75rem; /* equivalent to text-xs */
+  color: var(--muted-foreground);
+  font-family: var(--font-mono);
+}

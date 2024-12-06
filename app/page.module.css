@@ -1,0 +1,41 @@
+.main {
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 4rem);
+}
+
+.header {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.titleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.title {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+  font-family: var(--font-archive);
+}
+
+.description {
+  max-width: 28rem;
+  color: var(--muted-foreground);
+}
+
+.heroContainer {
+  position: relative;
+  flex: 1;
+  margin: -2rem;
+}

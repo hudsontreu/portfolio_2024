@@ -1,0 +1,34 @@
+.container {
+  display: block;
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.container:hover .image {
+  transform: scale(1.05);
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.5rem;
+  font-size: 0.75rem;
+  color: white;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+}
+
+.title {
+  margin-bottom: 0.25rem;
+}
+
+.date {
+  opacity: 0.8;
+}

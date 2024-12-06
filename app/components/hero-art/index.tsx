@@ -1,13 +1,14 @@
 import Image from 'next/image';
+import styles from './styles.module.css';
 
 export default function HeroArt() {
   return (
-    <div className="absolute inset-0">
+    <div className={styles.container}>
       <Image
-        src="/fireBoy.jpg"  // Make sure to add your image to the public directory
+        src="/fireBoy.jpg"
         alt="Hero Art"
         fill
-        className="object-cover"
+        className={styles.image}
         priority
         quality={100}
       />

@@ -1,0 +1,70 @@
+.sidebar {
+  min-height: 100vh;
+  width: 256px; /* equivalent to w-64 */
+  background-color: var(--background);
+  border-right: 1px solid var(--border);
+}
+
+.container {
+  padding: 1.5rem; /* equivalent to p-6 */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* equivalent to space-y-6 */
+}
+
+.topSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nameContainer {
+  display: block;
+}
+
+.nameBox {
+  border: 1px solid #F76B93;
+  height: 240px;
+  padding: 80px 1rem 40px 1rem;
+}
+
+.name {
+  display: block;
+  font-size: 2.25rem; /* equivalent to text-4xl */
+  font-family: var(--font-archive);
+  font-weight: bold;
+}
+
+.nav {
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  color: var(--muted-foreground);
+  text-decoration: none;
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.navLink:hover {
+  color: var(--foreground);
+  background-color: var(--accent);
+}
+
+.activeLink {
+  color: var(--foreground);
+  background-color: var(--accent);
+}

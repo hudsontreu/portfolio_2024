@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Sidebar } from "./components/sidebar";
 import { ThemeProvider } from "./components/theme-provider";
+import styles from "./layout.module.css";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -33,27 +34,27 @@ const archiveGrotesk = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Hudson Treu - Portfolio",
-  description: "Design Technologist Portfolio",
+  title: "Hudson Treu",
+  description: "Design Technologist",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} ${archiveGrotesk.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${archiveGrotesk.variable}`}>
         <ThemeProvider
-          attribute="class"
+          attribute="data-theme"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <div className="flex">
+          <div className={styles.layout}>
             <Sidebar />
-            <main className="flex-1 p-8">
+            <main className={styles.main}>
               {children}
             </main>
           </div>

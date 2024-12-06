@@ -1,18 +1,21 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import styles from './styles.module.css';
 
 export function Time() {
-  const [time, setTime] = useState('');
+  const [time, setTime] = useState<string>('');
 
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
-      setTime(now.toLocaleTimeString('en-US', {
-        hour: 'numeric',
-        minute: '2-digit',
-        hour12: true,
-      }).toLowerCase());
+      setTime(
+        now.toLocaleTimeString('en-US', {
+          hour: 'numeric',
+          minute: '2-digit',
+          hour12: true,
+        })
+      );
     };
 
     updateTime();
@@ -21,5 +24,5 @@ export function Time() {
     return () => clearInterval(interval);
   }, []);
 
-  return <span>{time}</span>;
+  return <div className={styles.time}>{time}</div>;
 }

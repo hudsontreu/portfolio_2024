@@ -1,0 +1,10 @@
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+  padding: 2rem;
+  margin-left: 16rem; /* Match sidebar width */
+}

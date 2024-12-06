@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import styles from './styles.module.css';
 
 interface ProjectCardProps {
   title: string;
@@ -10,17 +11,17 @@ interface ProjectCardProps {
 
 export function ProjectCard({ title, date, imageUrl, href }: ProjectCardProps) {
   return (
-    <Link href={href} className="block">
-      <div className="relative aspect-square overflow-hidden">
+    <Link href={href} className={styles.container}>
+      <div className={styles.imageContainer}>
         <Image
           src={imageUrl}
           alt={title}
           fill
-          className="object-cover transition-transform hover:scale-105"
+          className={styles.image}
         />
-        <div className="absolute bottom-0 left-0 right-0 p-2 text-xs text-white">
-          <div>{title}</div>
-          <div>{date}</div>
+        <div className={styles.overlay}>
+          <div className={styles.title}>{title}</div>
+          <div className={styles.date}>{date}</div>
         </div>
       </div>
     </Link>
