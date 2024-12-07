@@ -1,20 +1,24 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Inter, Roboto_Mono } from 'next/font/google';
 import "./globals.css";
 import { Sidebar } from "./components/sidebar";
 import { ThemeProvider } from "./components/theme-provider";
+import Scribble from "./components/scribble";
 import styles from "./layout.module.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
 });
 
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const robotoMono = Roboto_Mono({
+  subsets: ['latin'],
+  variable: '--font-roboto-mono',
+  display: 'swap',
+  weight: ['100', '200', '300', '400', '500', '600', '700']
 });
 
 const archiveGrotesk = localFont({
@@ -45,13 +49,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} ${archiveGrotesk.variable}`}>
+      <body className={`${inter.variable} ${robotoMono.variable} ${archiveGrotesk.variable}`}>
         <ThemeProvider
           attribute="data-theme"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
+          <Scribble />
           <div className={styles.layout}>
             <Sidebar />
             <main className={styles.main}>

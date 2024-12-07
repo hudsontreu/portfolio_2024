@@ -5,6 +5,7 @@
 
 .main {
   flex: 1;
-  padding: 2rem;
-  margin-left: 16rem; /* Match sidebar width */
+  display: flex;
+  flex-direction: column;
+  /* margin: 0 40px; */
 }

@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 2rem);
+}
+
+.header {
+  padding: 4rem var(--page-padding);
+  flex: 1;
+  display: flex;
+}
+
+.description {
+  max-width: 42rem;
+  color: var(--muted-foreground);
+}
+
+.content {
+  flex: 1;
+  padding: 0 var(--page-padding);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.filterButtons {
+  margin-bottom: 1.5rem;
+}
+
+.projectsContainer {
+  background-color: color-mix(in srgb, var(--muted) 50%, transparent);
+  border-radius: 0.5rem;
+  padding: var(--page-padding);
+  height: 100%;
+}

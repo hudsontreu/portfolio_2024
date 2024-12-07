@@ -1,22 +1,32 @@
+.container {
+  display: flex;
+}
+
 .button {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 0.5rem;
-  padding: 0.5rem;
-  color: var(--muted-foreground);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.375rem;
   background: none;
   border: none;
   cursor: pointer;
-  transition: color 0.2s, background-color 0.2s;
+  color: var(--muted-foreground);
+  transition: color 0.2s ease, background-color 0.2s ease;
 }
 
 .button:hover {
   color: var(--foreground);
-  background-color: var(--accent);
+  background-color: var(--muted);
 }
 
-.button svg {
+.active {
+  color: var(--foreground);
+  background-color: var(--muted);
+}
+
+.icon {
   width: 1rem;
   height: 1rem;
 }
