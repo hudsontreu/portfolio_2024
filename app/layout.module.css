@@ -1,6 +1,7 @@
 .layout {
   display: flex;
   min-height: 100vh;
+  padding-left: 256px; /* Same as sidebar width */
 }
 
 .main {
