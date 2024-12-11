@@ -1,27 +1,26 @@
 import { ProjectCard } from '../project-card';
 import styles from './styles.module.css';
+import { projects } from '../../work/projectData';
 
-const projects = [
-  {
-    title: 'Generative Contemplation',
-    date: 'Feb 2024',
-    imageUrl: '/reflection.png',
-    href: '/work/project1',
-  },
-  // Duplicate the same project 11 more times for the grid
-  ...Array(11).fill({
-    title: 'Generative Contemplation',
-    date: 'Feb 2024',
-    imageUrl: '/reflection.png',
-    href: '/work/project1',
-  }),
-];
+interface ProjectGridProps {
+  filter: 'all' | 'project' | 'experiment';
+}
 
-export function ProjectGrid() {
+export function ProjectGrid({ filter }: ProjectGridProps) {
+  const filteredProjects = filter === 'all' 
+    ? projects 
+    : projects.filter(project => project.group === filter);
+
   return (
     <div className={styles.grid}>
-      {projects.map((project, index) => (
-        <ProjectCard key={index} {...project} />
+      {filteredProjects.map((project) => (
+        <ProjectCard
+          key={project.id}
+          title={project.title}
+          date={project.date}
+          imageUrl={project.thumbnail}
+          href={`/work/${project.id}`}
+        />
       ))}
     </div>
   );

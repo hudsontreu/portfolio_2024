@@ -1,35 +1,49 @@
 .container {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 2rem);
+  min-height: 100vh;
+  padding: 2rem var(--page-padding);
 }
 
 .header {
-  padding: 4rem var(--page-padding);
-  flex: 1;
-  display: flex;
+  margin-bottom: 2rem;
 }
 
 .description {
   max-width: 42rem;
   color: var(--muted-foreground);
+  font-size: 1.1rem;
+  line-height: 1.6;
 }
 
 .content {
-  flex: 1;
-  padding: 0 var(--page-padding);
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .filterButtons {
-  margin-bottom: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .projectsContainer {
-  background-color: color-mix(in srgb, var(--muted) 50%, transparent);
+  width: 100%;
   border-radius: 0.5rem;
-  padding: var(--page-padding);
-  height: 100%;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem var(--page-padding);
+  }
+
+  .header {
+    margin-bottom: 1.5rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
 }

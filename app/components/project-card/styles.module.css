@@ -1,8 +1,21 @@
 .container {
   display: block;
   position: relative;
-  aspect-ratio: 1;
+  aspect-ratio: 16/9;
   overflow: hidden;
+  border-radius: 0.5rem;
+  background-color: var(--muted);
+  transition: transform 0.2s ease;
+}
+
+.container:hover {
+  transform: translateY(-2px);
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .image {
@@ -19,16 +32,39 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 0.5rem;
-  font-size: 0.75rem;
+  padding: 1rem;
+  background: linear-gradient(to top, 
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.6) 50%,
+    transparent 100%
+  );
   color: white;
-  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  transform: translateY(0);
+  transition: transform 0.3s ease;
 }
 
 .title {
-  margin-bottom: 0.25rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
 }
 
 .date {
+  font-size: 0.875rem;
   opacity: 0.8;
+}
+
+@media (max-width: 640px) {
+  .overlay {
+    padding: 0.75rem;
+  }
+  
+  .title {
+    font-size: 1rem;
+  }
+  
+  .date {
+    font-size: 0.75rem;
+  }
 }

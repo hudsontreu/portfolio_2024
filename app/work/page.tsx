@@ -12,29 +12,14 @@ export default function WorkPage() {
     {
       title: "All",
       value: "all",
-      content: (
-        <div className={styles.projectsContainer}>
-          <ProjectGrid filter={activeFilter} />
-        </div>
-      ),
     },
     {
       title: "Projects",
       value: "project",
-      content: (
-        <div className={styles.projectsContainer}>
-          <ProjectGrid filter={activeFilter} />
-        </div>
-      ),
     },
     {
       title: "Experiments",
       value: "experiment",
-      content: (
-        <div className={styles.projectsContainer}>
-          <ProjectGrid filter={activeFilter} />
-        </div>
-      ),
     },
   ];
 
@@ -49,9 +34,11 @@ export default function WorkPage() {
         <Tabs 
           tabs={tabs} 
           className={styles.filterButtons}
-          defaultValue="all"
-          onValueChange={(value) => setActiveFilter(value as "all" | "project" | "experiment")}
+          onTabChange={(tab) => setActiveFilter(tab.value as typeof activeFilter)}
         />
+        <div className={styles.projectsContainer}>
+          <ProjectGrid filter={activeFilter} />
+        </div>
       </div>
     </div>
   );
