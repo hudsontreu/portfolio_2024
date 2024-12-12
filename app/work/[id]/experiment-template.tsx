@@ -1,57 +1,98 @@
+'use client';
+
 import Image from "next/image";
+import Link from "next/link";
+import { useCallback, useRef } from 'react';
 import styles from "./experiment-template.module.css";
 
 interface ExperimentTemplateProps {
-  project: any; // Replace with proper type from projectData
+  project: {
+    id: number;
+    title: string;
+    subtitle: string | null;
+    group: string;
+    iframePath: string | null;
+    category_1: string;
+    tags: string[];
+    thumbnail: string;
+    url: string;
+    scope: string[];
+    date: string;
+    credits: string | null;
+    contributions: string[];
+  };
 }
 
 export default function ExperimentTemplate({ project }: ExperimentTemplateProps) {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  const handleIframeError = useCallback((e: React.SyntheticEvent<HTMLIFrameElement, Event>) => {
+    console.error('Iframe loading error:', e);
+    console.log('Attempted path:', project.iframePath);
+  }, [project.iframePath]);
+
+  const handleFullscreen = useCallback(() => {
+    if (!iframeRef.current) return;
+
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    } else {
+      iframeRef.current.requestFullscreen().catch((err) => {
+        console.error('Error attempting to enable fullscreen:', err);
+      });
+    }
+  }, []);
+
+  if (!project.iframePath) return null;
+
   return (
     <article className={styles.experiment}>
+      <div className={styles.nav}>
+        <Link href="/work" className={styles.backLink}>← Work</Link>
+      </div>
+      
       <header className={styles.header}>
-        <h1 className={styles.title}>{project.title}</h1>
-        <div className={styles.meta}>
-          <span className={styles.date}>{project.date}</span>
-          <div className={styles.tags}>
-            {project.tags?.map((tag: string) => (
-              <span key={tag} className={styles.tag}>
-                {tag}
-              </span>
-            ))}
+        <div className={styles.metadata}>
+          <div className={styles.metaItem}>
+            <span className={styles.metaLabel}>Title</span>
+            <span className={styles.metaValue}>{project.title}</span>
           </div>
+          <div className={styles.metaItem}>
+            <span className={styles.metaLabel}>Date</span>
+            <span className={styles.metaValue}>{project.date}</span>
+          </div>
+          <div className={styles.metaItem}>
+            <span className={styles.metaLabel}>Category</span>
+            <span className={styles.metaValue}>{project.category_1}</span>
+          </div>
+          <div className={styles.metaItem}>
+            <span className={styles.metaLabel}>Tags</span>
+            <span className={styles.metaValue}>
+              {project.tags?.map((tag: string) => (
+                <span key={tag}>{tag}</span>
+              ))}
+            </span>
+          </div>
+          <button 
+            className={styles.fullscreenButton}
+            onClick={handleFullscreen}
+          >
+            Enter Fullscreen
+          </button>
         </div>
       </header>
 
-      {project.thumbnail && (
-        <div className={styles.thumbnail}>
-          <Image
-            src={project.thumbnail}
-            alt={project.title}
-            fill
-            style={{ objectFit: "cover" }}
-          />
-        </div>
-      )}
-
-      <div className={styles.content}>
-        <div className={styles.tools}>
-          <h2>Tools & Technologies</h2>
-          <ul className={styles.toolsList}>
-            {project.scope?.map((item: string) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </div>
-
-        {project.url && (
-          <div className={styles.demo}>
-            <h2>Live Demo</h2>
-            <a href={project.url} target="_blank" rel="noopener noreferrer">
-              View Project
-            </a>
-          </div>
-        )}
-      </div>
+      <iframe 
+        ref={iframeRef}
+        src={project.iframePath}
+        className={styles.content}
+        title={project.title}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+        frameBorder="0"
+        sandbox="allow-scripts allow-same-origin allow-forms"
+        loading="lazy"
+        onError={handleIframeError}
+      />
     </article>
   );
 }
