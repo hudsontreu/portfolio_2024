@@ -1,3 +1,5 @@
+"use client";
+
 import { ProjectCard } from '../project-card';
 import styles from './styles.module.css';
 import { projects } from '../../work/projectData';
@@ -20,6 +22,7 @@ export function ProjectGrid({ filter }: ProjectGridProps) {
           date={project.date}
           imageUrl={project.thumbnail}
           href={`/work/${project.id}`}
+          scope={project.scope}
         />
       ))}
     </div>

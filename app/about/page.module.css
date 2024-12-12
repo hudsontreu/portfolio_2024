@@ -1,0 +1,78 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: var(--page-padding);
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  background: var(--muted);
+}
+
+.bio {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.bioText {
+  font-family: var(--font-mono);
+  line-height: 1.6;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 1rem;
+}
+
+.socialLinks a {
+  font-family: var(--font-mono);
+  color: var(--foreground);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.toolkit {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.toolkitTitle {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 0.5rem;
+}
+
+.skill {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  border: 1px solid var(--border);
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.skill:hover {
+  background: var(--foreground);
+  color: var(--background);
+}
