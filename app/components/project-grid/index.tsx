@@ -20,7 +20,8 @@ export function ProjectGrid({ filter }: ProjectGridProps) {
           key={project.id}
           title={project.title}
           date={project.date}
-          imageUrl={project.thumbnail}
+          thumbnailType={project.thumbnailType}
+          thumbnailUrl={project.thumbnailUrl}
           href={`/work/${project.id}`}
           scope={project.scope}
         />

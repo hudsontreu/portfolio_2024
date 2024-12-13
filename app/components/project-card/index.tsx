@@ -5,12 +5,13 @@ import styles from './styles.module.css';
 interface ProjectCardProps {
   title: string;
   date: string;
-  imageUrl: string;
+  thumbnailType: 'image' | 'video';
+  thumbnailUrl: string;
   href: string;
   scope: string[];
 }
 
-export function ProjectCard({ title, date, imageUrl, href, scope }: ProjectCardProps) {
+export function ProjectCard({ title, date, thumbnailType, thumbnailUrl, href, scope }: ProjectCardProps) {
   return (
     <Link href={href} className={styles.container}>
       <div className={styles.corners}>
@@ -30,12 +31,23 @@ export function ProjectCard({ title, date, imageUrl, href, scope }: ProjectCardP
               {scope.join(' / ')}
             </div>
           <div className={styles.imageWrapper}>
-            <Image
-              src={imageUrl}
-              alt={title}
-              fill
-              className={styles.image}
-            />
+            {thumbnailType === 'image' ? (
+              <Image
+                src={thumbnailUrl}
+                alt={title}
+                fill
+                className={styles.image}
+              />
+            ) : (
+              <video
+                src={thumbnailUrl}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className={styles.image}
+              />
+            )}
           </div>
         </div>
       </div>
