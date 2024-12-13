@@ -1,3 +1,26 @@
+@keyframes flashCorners {
+  0% {
+    border-color: var(--foreground);
+    opacity: 1;
+  }
+  49% {
+    border-color: var(--foreground);
+    opacity: 1;
+  }
+  50% {
+    border-color: var(--mid-gray-foreground);
+    opacity: 0.7;
+  }
+  99% {
+    border-color: var(--mid-gray-foreground);
+    opacity: 0.7;
+  }
+  100% {
+    border-color: var(--foreground);
+    opacity: 1;
+  }
+}
+
 .container {
   position: relative;
   display: flex;
@@ -7,23 +30,46 @@
   color: var(--foreground);
   padding: 1.5rem;
   background: var(--muted);
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   width: 100%;
   min-height: 500px;
+  border-radius: 4px;
+  z-index: 1;
 }
 
 .container:hover {
   background: var(--background);
+  transform: scale(1.02);
+  z-index: 2;
+  box-shadow: 
+    /* 0 -15px 35px -12px var(--glow-pink),
+    15px 0 35px -12px var(--glow-blue),
+    0 15px 35px -12px var(--glow-purple),
+    -15px 0 35px -12px var(--glow-green); */
+    0 -15px 35px -12px var(--glow-pink),
+    15px 0 35px -12px var(--glow-pink),
+    0 15px 35px -12px var(--glow-pink),
+    -15px 0 35px -12px var(--glow-pink);
 }
 
 .container:hover .image {
-  transform: scale(1.02);
+  transform: scale(1.04);
 }
+
+/* .container:hover .title {
+  animation: flashCardTitle 0.06s steps(2, start) infinite;
+  will-change: color;
+} */
 
 .corners {
   position: absolute;
   inset: 0;
-  pointer-events: none;
+  color: var(--foreground)
+}
+
+.container:hover .corner {
+  animation: flashCorners 0.06s steps(2, start) infinite;
+  will-change: border-color;
 }
 
 .corner {
@@ -31,6 +77,7 @@
   width: 12px;
   height: 12px;
   border: 1px solid var(--foreground);
+  transition: border-color 0.2s ease;
 }
 
 .corner:nth-child(1) {
@@ -109,10 +156,12 @@ video.image {
 }
 
 .title {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 500;
   line-height: 1.2;
   margin: 0;
+  color: var(--foreground);
+  transition: color 0.2s ease;
 }
 
 .scope {

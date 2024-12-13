@@ -27,7 +27,10 @@ export default function WorkPage() {
     <div className={styles.container}>
       <div className={styles.header}>
         <p className={styles.description}>
-          Exploring the potential of generative AI to transform perceptual experiences in digital media.
+        ⌭⎈∰⎊⎌⎍ ⎎∯∱⎏⎐⎑ ⎒∲∳ ⎓⎔⎕ ⎖∴∵ ⎗⎘⎙ ⎚∶∷ ⎛⎜⎝ ⎞∸∹ ⎟⎠⎡
+        ⌭⎈∰⎊⎌⎍ ⎎∯∱⎏⎐⎑ ⎒∲∳ ⎓⎔⎕ ⎖∴∵ ⎗⎘⎙ ⎚∶∷ ⎛⎜⎝ ⎞∸∹ ⎟⎠⎡
+        ⌭⎈∰⎊⎌⎍ ⎎∯∱⎏⎐⎑ ⎒∲∳ ⎓⎔⎕ ⎖∴∵ ⎗⎘⎙ ⎚∶∷ ⎛⎜⎝⌭⎈∰⎊⎌⎍ ⎎∯∱⎏⎐⎑ ⎒∲∳
+        ⎔⎕ ⎖∴∵ ⎗⎘⎙ ⎚∶∷ ⎛⎜⎝⌭⎈∰⎊⎌⎍⎛⎜⎝⌭⎈∰⎊⎌⎍⎛⎜⎝
         </p>
       </div>
       <div className={styles.content}>

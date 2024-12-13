@@ -11,6 +11,11 @@
   --mid-gray-foreground: #404040;
   --border: #e5e5e5;
 
+  /* Glow colors */
+  --glow-pink: rgba(255, 125, 125, 0.204);
+  --glow-blue: rgba(0, 255, 255, 0.15);
+  --glow-purple: rgba(111, 76, 255, 0.15);
+  --glow-green: rgba(77, 255, 77, 0.15);
 
   /* Font families */
   --font-inter: 'Inter', sans-serif;
@@ -86,7 +91,7 @@ a {
   position: relative;
 }
 
-a:hover {
+.flash-on-hover:hover {
   animation: flashText 0.06s steps(2, start) infinite;
   text-decoration: none;
 }

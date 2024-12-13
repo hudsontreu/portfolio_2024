@@ -22,7 +22,7 @@ export function Sidebar() {
             <Time />
             <ThemeToggle />
           </div>
-          <Link href="/" className={styles.nameContainer}>
+          <Link href="/" className={`${styles.nameContainer} flash-on-hover`}>
             <div className={styles.nameBox}>
               <span className={styles.name}>HUDSON</span>
               <span className={styles.name}>TREU</span>
@@ -37,7 +37,7 @@ export function Sidebar() {
             href={item.href}
             className={`${styles.navLink} ${
               pathname === item.href ? styles.activeLink : ''
-            }`}
+            } flash-on-hover`}
           >
             {item.text}
           </Link>
