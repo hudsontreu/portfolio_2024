@@ -12,30 +12,34 @@ const socialLinks = [
 
 const skillGroups = {
   Design: [
-    'UI/UX Design',
-    'Interaction Design',
-    'Creative Direction',
     'Figma',
-    'Design Systems'
+    'Adobe Suite',
+    'Framer'
   ],
   Development: [
+    'HTML',
+    'CSS',
     'JavaScript',
     'TypeScript',
+    'GLSL',
     'React',
+    'Angular',
     'Next.js',
     'Node.js',
+    'Framer Motion',
     'Python',
-    'REST APIs',
+    'VS Code',
     'Git'
   ],
   Media: [
-    'WebGL',
-    'Three.js',
+    'TouchDesigner',
     'p5.js',
-    'Web Audio API',
-    'RNBO',
+    'Three.js',
     'Max/MSP',
-    'Creative Coding'
+    'RNBO',
+    'Stable Diffusion',
+    'Ableton Live',
+    'Arduino'
   ]
 };
 
