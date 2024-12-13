@@ -20,43 +20,52 @@ const socialLinks = [
 export default function About() {
   return (
     <div className={styles.container}>
-      <section className={styles.header}>
-        <div className={styles.imageContainer}>
-          <Image
-            src="/headshot.jpg"
-            alt="Hudson Treu"
-            fill
-            style={{ objectFit: 'cover' }}
-          />
-        </div>
-        <div className={styles.bio}>
-          <div className={styles.bioText}>
-            <p>I'm Hudson, designer and creative developer currently working as a design technologist for the Digital Technology Innovation R&D team at SageNet and recently graduated from the MS-HCI program at Georgia Tech.</p>
-            <br />
-            <p>As a design technologist, I both design and build interactive digital experiences at all scales, driven by a passion for enhancing human experiences through technology and 6 years professional experience. My work blends experience design, interface design, and UI engineering. I specialize in bringing designs to life through nuanced prototyping with emerging tech.</p>
-            <br />
-            <p>I also have a love for interactive digital arts. In my practice as a media artist, I aim to explore how digital art and contemporary media aesthetics can shape innovative interaction paradigms in software design.</p>
-          </div>
-          <div className={styles.socialLinks}>
-            {socialLinks.map((link) => (
-              <Link key={link.label} href={link.url}>
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      <div className={styles.header}>
+        <p className={styles.description}>About</p>
+      </div>
 
-      <section className={styles.toolkit}>
-        <h2 className={styles.toolkitTitle}>Toolkit</h2>
-        <div className={styles.skillsGrid}>
-          {skills.map((skill) => (
-            <div key={skill} className={styles.skill}>
-              {skill}
+      <div className={styles.content}>
+        <div className={styles.grid}>
+          <div className={styles.imageContainer}>
+            <Image
+              src="/headshot.jpg"
+              alt="Hudson Treu"
+              fill
+              style={{ objectFit: 'cover' }}
+            />
+          </div>
+
+          <div className={styles.info}>
+            <div className={styles.bio}>
+              <p>I'm Hudson, designer and creative developer currently working as a design technologist for the Digital Technology Innovation R&D team at SageNet and recently graduated from the MS-HCI program at Georgia Tech.</p>
+              <br />
+              <p>As a design technologist, I both design and build interactive digital experiences at all scales, driven by a passion for enhancing human experiences through technology and 6 years professional experience. My work blends experience design, interface design, and UI engineering. I specialize in bringing designs to life through nuanced prototyping with emerging tech.</p>
+              <br />
+              <p>I also have a love for interactive digital arts. In my practice as a media artist, I aim to explore how digital art and contemporary media aesthetics can shape innovative interaction paradigms in software design.</p>
             </div>
-          ))}
+
+            <div className={styles.skills}>
+              <h2>Skills</h2>
+              <div className={styles.skillsList}>
+                {skills.map((skill) => (
+                  <span key={skill} className={styles.skill}>{skill}</span>
+                ))}
+              </div>
+            </div>
+
+            <div className={styles.social}>
+              <h2>Links</h2>
+              <div className={styles.socialLinks}>
+                {socialLinks.map((link) => (
+                  <Link key={link.label} href={link.url} target="_blank" className={styles.socialLink}>
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
-      </section>
+      </div>
     </div>
   );
 }

@@ -1,13 +1,28 @@
 .container {
   display: flex;
   flex-direction: column;
-  padding: var(--page-padding);
-  gap: 4rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  min-height: 100vh;
+  padding: 2rem var(--page-padding);
 }
 
 .header {
+  margin-bottom: 2rem;
+}
+
+.description {
+  max-width: 42rem;
+  color: var(--muted-foreground);
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
@@ -16,32 +31,62 @@
 
 .imageContainer {
   position: relative;
-  width: 100%;
   aspect-ratio: 1;
-  background: var(--muted);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 }
 
 .bio {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
+  line-height: 1.6;
+  color: var(--muted-foreground);
 }
 
-.bioText {
-  font-family: var(--font-mono);
-  line-height: 1.6;
+.skills h2, .social h2 {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  margin-bottom: 1rem;
+  font-weight: normal;
+}
+
+.skillsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill {
+  font-size: 0.9rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--accent);
+  border-radius: 2px;
+  color: var(--foreground);
 }
 
 .socialLinks {
   display: flex;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
-.socialLinks a {
-  font-family: var(--font-mono);
-  color: var(--foreground);
+.socialLink {
+  color: var(--muted-foreground);
   text-decoration: none;
   font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.socialLink:hover {
+  color: var(--foreground);
 }
 
 .toolkit {
@@ -55,24 +100,4 @@
   font-size: 0.9rem;
   text-transform: uppercase;
   color: var(--muted-foreground);
-}
-
-.skillsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 0.5rem;
-}
-
-.skill {
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-  padding: 0.5rem;
-  border: 1px solid var(--border);
-  text-align: center;
-  transition: all 0.2s ease;
-}
-
-.skill:hover {
-  background: var(--foreground);
-  color: var(--background);
 }
