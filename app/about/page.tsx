@@ -3,10 +3,10 @@ import Link from 'next/link';
 import styles from './page.module.css';
 
 const socialLinks = [
-  { label: 'LinkedIn', url: 'https://linkedin.com' },
-  { label: 'Instagram', url: 'https://instagram.com' },
-  { label: 'X', url: 'https://x.com' },
-  { label: 'Gmail', url: 'mailto:email@example.com' },
+  { label: 'LinkedIn', url: 'https://www.linkedin.com/in/hudsontreu/' },
+  { label: 'Instagram', url: 'https://www.instagram.com/hudsontreu.design/' },
+  { label: 'X', url: 'https://x.com/hudsontreu' },
+  { label: 'Gmail', url: 'mailto:hudsontreu55@gmail.com' },
   { label: 'CV', url: '/cv.pdf' },
 ];
 
