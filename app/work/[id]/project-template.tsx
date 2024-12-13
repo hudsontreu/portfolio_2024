@@ -25,7 +25,7 @@ export default function ProjectTemplate({ project }: ProjectTemplateProps) {
   return (
     <article className={styles.project}>
       <div className={styles.nav}>
-        <Link href="/work" className={styles.backLink}>← Work</Link>
+        <Link href="/work" className={`${styles.backLink} flash-on-hover`}>← Work</Link>
       </div>
       
       <header className={styles.header}>
@@ -42,21 +42,21 @@ export default function ProjectTemplate({ project }: ProjectTemplateProps) {
             <span className={styles.metaLabel}>Category</span>
             <span className={styles.metaValue}>{project.category_1}</span>
           </div>
-          <div className={styles.metaItem}>
+          {/* <div className={styles.metaItem}>
             <span className={styles.metaLabel}>Tags</span>
             <span className={styles.metaValue}>
               {project.tags?.map((tag: string) => (
                 <span key={tag}>{tag}</span>
               ))}
             </span>
-          </div>
+          </div> */}
         </div>
       </header>
 
       <div className={styles.content}>
         <div className={styles.heroImage}>
           <Image
-            src={project.thumbnail}
+            src={project.thumbnailUrl}
             alt={project.title}
             fill
             style={{ objectFit: "cover" }}

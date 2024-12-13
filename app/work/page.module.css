@@ -6,7 +6,8 @@
 }
 
 .header {
-  margin-bottom: 2rem;
+  padding: var(--page-padding) 0;
+  gap: 2rem;
 }
 
 .description {

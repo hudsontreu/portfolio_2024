@@ -42,7 +42,7 @@
   font-size: 2.25rem; /* equivalent to text-4xl */
   font-family: var(--font-archive);
   font-weight: 700;
-  color: var(--tertiary)
+  color: var(--foreground)
 }
 
 .nav {
@@ -60,6 +60,7 @@
   color: var(--foreground);
   text-decoration: none;
   transition: color 0.3s ease;
+  font-weight: 600;
 }
 
 .navLink::before {

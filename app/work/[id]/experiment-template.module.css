@@ -18,7 +18,7 @@
 
 .metadata {
   display: flex;
-  gap: 2rem;
+  gap: 2.5rem;
   align-items: flex-end;
   padding-bottom: 1rem;
 }
@@ -41,6 +41,7 @@
   font-size: 0.9rem;
   font-family: var(--font-mono);
   text-transform: capitalize;
+  font-weight: 400;
 }
 
 .tag {
@@ -57,12 +58,15 @@
   font-size: 0.9rem;
   border: none;
   font-family: var(--font-mono);
+  font-weight: 400;
 }
 
 .content {
   flex: 1;
   background: #0000001f;
   width: 100%;
+  border-radius: 2px;
+  /* padding: 8px; */
 }
 
 .content::-webkit-scrollbar {
@@ -74,9 +78,11 @@
 }
 
 .backLink {
-  color: #666;
+  color: var(--muted-foreground);
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
 }
 
 .backLink:hover {

@@ -48,7 +48,7 @@ export default function ExperimentTemplate({ project }: ExperimentTemplateProps)
   return (
     <article className={styles.experiment}>
       <div className={styles.nav}>
-        <Link href="/work" className={styles.backLink}>← Work</Link>
+        <Link href="/work" className={`${styles.backLink} flash-on-hover`}>← Work</Link>
       </div>
       
       <header className={styles.header}>
@@ -65,14 +65,14 @@ export default function ExperimentTemplate({ project }: ExperimentTemplateProps)
             <span className={styles.metaLabel}>Category</span>
             <span className={styles.metaValue}>{project.category_1}</span>
           </div>
-          <div className={styles.metaItem}>
+          {/* <div className={styles.metaItem}>
             <span className={styles.metaLabel}>Tags</span>
             <span className={styles.metaValue}>
               {project.tags?.map((tag: string) => (
                 <span key={tag}>{tag}</span>
               ))}
             </span>
-          </div>
+          </div> */}
           <button 
             className={styles.fullscreenButton}
             onClick={handleFullscreen}

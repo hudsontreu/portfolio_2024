@@ -32,7 +32,6 @@
   background: var(--muted);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   width: 100%;
-  min-height: 500px;
   border-radius: 4px;
   z-index: 1;
 }
@@ -114,6 +113,7 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  gap: 1rem;
 }
 
 .topSection {
@@ -126,12 +126,14 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  flex: 1;
 }
 
 .imageWrapper {
   position: relative;
   width: 100%;
-  min-height: 260px;
+  flex: 1;
+  min-height: 0;
   overflow: hidden;
 }
 

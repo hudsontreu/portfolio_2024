@@ -25,7 +25,7 @@ export const projects: Project[] = [
         thumbnailType: "image",
         thumbnailUrl: "/genContemplation_cardImg.png",
         scope: ["p5.js", "RNBO", "Web Audio API", "JavaScript"],
-        date: "September 2024",
+        date: "Sep 2024",
         contributions: []
     },
     {
@@ -38,7 +38,7 @@ export const projects: Project[] = [
         thumbnailType: "image",
         thumbnailUrl: "/v.4mp_cardImg.png",
         scope: ["UX Design", "UI Design", "Software Engineering"],
-        date: "April 2024",
+        date: "Apr 2024",
         contributions: []
     },
     {
@@ -51,7 +51,7 @@ export const projects: Project[] = [
         thumbnailType: "video",
         thumbnailUrl: "/p5.mp4",
         scope: ["UX Design", "UI Design", "Software Engineering"],
-        date: "December 2024",
+        date: "Dec 2024",
         credits: ["Gururaj Deshpande", "Rochan Madhusudhan", "Shaam Bala"],
         contributions: ["Research", "Design", "Sonification"]
     },
@@ -78,7 +78,7 @@ export const projects: Project[] = [
         thumbnailType: "image",
         thumbnailUrl: "/fireBoy.jpg",
         scope: ["p5.js", "RNBO", "Web Audio API", "JavaScript"],
-        date: "September 2024",
+        date: "Sep 2024",
         contributions: []
     },
     {
@@ -90,7 +90,7 @@ export const projects: Project[] = [
         thumbnailType: "video",
         thumbnailUrl: "/shelfedge_clip_01.mov",
         scope: ["p5.js", "RNBO", "Web Audio API", "JavaScript"],
-        date: "September 2024",
+        date: "Sep 2024",
         contributions: []
     }
   ];
