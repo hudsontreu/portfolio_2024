@@ -48,7 +48,7 @@ export default function ExperimentTemplate({ project }: ExperimentTemplateProps)
   return (
     <article className={styles.experiment}>
       <div className={styles.nav}>
-        <Link href="/work" className={`${styles.backLink} flash-on-hover`}>← Work</Link>
+      <Link href="/work" className={`${styles.backLink} flash-on-hover underline-animation`}>← Work</Link>
       </div>
       
       <header className={styles.header}>
@@ -74,7 +74,7 @@ export default function ExperimentTemplate({ project }: ExperimentTemplateProps)
             </span>
           </div> */}
           <button 
-            className={styles.fullscreenButton}
+            className={`${styles.fullscreenButton} underline-animation`}
             onClick={handleFullscreen}
           >
             Enter Fullscreen

@@ -52,13 +52,22 @@
 }
 
 .fullscreenButton {
-  margin-left: auto;
-  background: none;
-  cursor: pointer;
-  font-size: 0.9rem;
-  border: none;
   font-family: var(--font-mono);
-  font-weight: 400;
+  font-size: 0.9rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: inherit;
+  margin-left: auto;
+}
+
+.backLink { 
+  color: var(--muted-foreground);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
 }
 
 .content {
@@ -75,16 +84,4 @@
 
 .nav {
   margin-bottom: 3rem;
-}
-
-.backLink {
-  color: var(--muted-foreground);
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
-
-.backLink:hover {
-  color: #000;
 }

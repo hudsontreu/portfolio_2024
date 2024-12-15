@@ -1,6 +1,7 @@
 import Image from "next/image";
 import HeroArt from "./components/hero-art";
 import HeroArt2 from './components/hero-art-2';
+import HeroArtp5 from "./components/hero-art-3_p5";
 import styles from "./page.module.css";
 
 export default function Home() {

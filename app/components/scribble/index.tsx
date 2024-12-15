@@ -13,27 +13,29 @@ export default function Scribble() {
     const createScribbleLine = (x: number, y: number) => {
       const line = document.createElement('div');
       line.classList.add(styles.scribbleLine);
+      
       line.style.left = `${x}px`;
       line.style.top = `${y}px`;
       
       // Random rotation and length
       const rotation = Math.random() * 360;
-      const length = Math.random() * 50 + 20;
+      const length = Math.random() * 15 + 5; // 5-20px length
       
       line.style.transform = `rotate(${rotation}deg)`;
       line.style.width = `${length}px`;
       
       scribble.appendChild(line);
 
-      // Remove line after animation
+      // Remove line after animation completes
       setTimeout(() => {
         line.remove();
-      }, 1000);
+      }, 800);
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-      // Create scribble lines for the entire document
+      // Create 2 lines per movement for a fuller effect
       createScribbleLine(e.clientX, e.clientY);
+      createScribbleLine(e.clientX + (Math.random() - 0.5) * 10, e.clientY + (Math.random() - 0.5) * 10);
     };
 
     document.addEventListener('mousemove', handleMouseMove);
