@@ -54,7 +54,15 @@ export default function ProjectTemplate({ project }: ProjectTemplateProps) {
       </header>
 
       <div className={styles.content}>
-        <div className={styles.heroImage}>
+    
+
+        <div className={styles.projectInfo}>
+          <div className={styles.title}>
+            <h1>{project.title}</h1>
+            {project.subtitle && <h2>{project.subtitle}</h2>}
+          </div>
+
+          <div className={styles.heroImage}>
           <Image
             src={project.thumbnailUrl}
             alt={project.title}
@@ -63,12 +71,6 @@ export default function ProjectTemplate({ project }: ProjectTemplateProps) {
             priority
           />
         </div>
-
-        <div className={styles.projectInfo}>
-          <div className={styles.title}>
-            <h1>{project.title}</h1>
-            {project.subtitle && <h2>{project.subtitle}</h2>}
-          </div>
 
           <div className={styles.description}>
             <p>Lorem ipsum dolor sit amet consectetur. In facilisi pharetra proin aliquet dui. Lectus ut elit lectus placerat leo sed nam gravida purus. Nisl euismod congue suspendisse cursus morbi. Id eget nibh sagittis pulvinar pretium tellus aliquam.</p>
