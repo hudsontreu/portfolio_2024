@@ -7,10 +7,12 @@ export const fragmentShader = `
     uniform vec2 u_resolution;
     uniform vec2 u_mouse;
     uniform sampler2D image;
+    uniform sampler2D nextImage;
+    uniform float blend;
 
     varying vec2 v_texcoord;
 
-    #define GRID_SIZE 80.0
+    #define GRID_SIZE 100.0
     #define INFLUENCE_RADIUS 0.1
     #define BASE_SPEED 0.005
     #define MOUSE_SPEED 0.01
@@ -75,15 +77,15 @@ export const fragmentShader = `
         // Add movement based on cell position and mouse
         vec2 movement = getMovement(cellId, mousePos);
         
-        // Sample the image with the offset
+        // Sample both images with the offset
         vec2 finalUV = uv + movement;
         finalUV = fract(finalUV);
         
-        vec4 color = texture2D(image, finalUV);
+        vec4 currentColor = texture2D(image, finalUV);
+        vec4 nextColor = texture2D(nextImage, finalUV);
         
-        // Add subtle grid lines
-        float gridLine = step(0.95, gridPos.x) + step(0.95, gridPos.y);
-        color = mix(color, vec4(0.0, 0.0, 0.0, 1.0), gridLine * 0.1);
+        // Blend between the two images
+        vec4 color = mix(currentColor, nextColor, blend);
         
         gl_FragColor = color;
     }
