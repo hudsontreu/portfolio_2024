@@ -1,6 +1,7 @@
 import Image from "next/image";
 import HeroArt from "./components/hero-art";
 import HeroArt2 from './components/hero-art-2';
+import HeroArt3 from './components/hero-art-3';
 import HeroArtp5 from "./components/hero-art-3_p5";
 import styles from "./page.module.css";
 
@@ -26,7 +27,7 @@ export default function Home() {
         </div>
       </div>
       <div className={styles.heroContainer}>
-        <HeroArt />
+        <HeroArt3 />
       </div>
     </div>
   );
