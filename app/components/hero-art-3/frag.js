@@ -13,9 +13,9 @@ export const fragmentShader = `
     varying vec2 v_texcoord;
 
     #define GRID_SIZE 100.0
-    #define INFLUENCE_RADIUS 0.1
-    #define BASE_SPEED 0.005
-    #define MOUSE_SPEED 0.01
+    #define INFLUENCE_RADIUS 0.15
+    #define BASE_SPEED 0.003
+    #define MOUSE_SPEED 0.008
 
     vec2 getMovement(vec2 pos, vec2 mousePos) {
         // Calculate distance to mouse
@@ -86,6 +86,12 @@ export const fragmentShader = `
         
         // Blend between the two images
         vec4 color = mix(currentColor, nextColor, blend);
+        
+        // Reduce saturation
+        float saturationFactor = 0.6;
+        vec3 luminance = vec3(0.299, 0.587, 0.114);
+        float colorLuminance = dot(color.rgb, luminance);
+        color.rgb = mix(vec3(colorLuminance), color.rgb, saturationFactor);
         
         gl_FragColor = color;
     }
