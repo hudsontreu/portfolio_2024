@@ -13,21 +13,58 @@
 .header {
   padding: 4rem var(--page-padding);
   display: flex;
-  align-items: flex-end;
-  gap: 4rem;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.colorBlocks {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+}
+
+.dt_divs {
+  width: 4rem;
+  height: 100%;
+  background-color: #FF69B4;
+  border-radius: 1px;
 }
 
 .title {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-  font-weight: 700;
+  font-size: 2rem;
+  font-weight: 500;
   font-family: var(--font-archive);
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  gap: 0.5rem;
+}
+
+.design {
+  margin: 0;
+  line-height: 1;
+}
+
+.technologist {
+  margin-left: 1.8rem;
+  line-height: 1;
+}
+
+.description_block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .description {
   font-family: var(--font-roboto-mono);
   font-size: 0.9rem;
-  max-width: 28rem;
   color: var(--muted-foreground);
 }
 
