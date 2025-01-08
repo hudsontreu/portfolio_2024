@@ -12,10 +12,10 @@ export const fragmentShader = `
 
     varying vec2 v_texcoord;
 
-    #define GRID_SIZE 100.0
-    #define INFLUENCE_RADIUS 0.15
-    #define BASE_SPEED 0.003
-    #define MOUSE_SPEED 0.008
+    #define GRID_SIZE 120.0
+    #define INFLUENCE_RADIUS 0.16
+    #define BASE_SPEED 0.0018
+    #define MOUSE_SPEED 0.007
 
     vec2 getMovement(vec2 pos, vec2 mousePos) {
         // Calculate distance to mouse
