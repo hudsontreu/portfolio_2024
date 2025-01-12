@@ -1,4 +1,5 @@
-import { getWorkBySlug } from "../projectData";
+import { client } from '../../../sanity/lib/client';
+import { groq } from 'next-sanity';
 import { notFound } from "next/navigation";
 import styles from "./page.module.css";
 import ProjectTemplate from "./project-template";
@@ -11,7 +12,26 @@ interface Props {
 }
 
 export default async function ProjectPage({ params }: Props) {
-  const work = await getWorkBySlug(params.id);
+  const query = groq`*[_type in ["projects", "experiments"] && slug.current == $slug][0]{
+    _id,
+    _type,
+    title,
+    subtitle,
+    "slug": slug.current,
+    group,
+    category_1,
+    tags,
+    thumbnail,
+    thumbnailType,
+    url,
+    scope,
+    date,
+    credits,
+    contributions,
+    projectPath
+  }`;
+
+  const work = await client.fetch(query, { slug: params.id });
 
   if (!work) {
     notFound();
