@@ -6,13 +6,15 @@ import styles from "./project-template.module.css";
 
 interface ProjectTemplateProps {
   project: {
-    id: number;
+    _id: string;
+    _type: 'projects';
     title: string;
     subtitle: string | null;
     group: string;
     category_1: string;
     tags: string[];
-    thumbnail: string;
+    thumbnail: any;
+    thumbnailType: 'image' | 'video';
     url: string;
     scope: string[];
     date: string;

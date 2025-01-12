@@ -7,14 +7,15 @@ import styles from "./experiment-template.module.css";
 
 interface ExperimentTemplateProps {
   project: {
-    id: number;
+    _id: string;
+    _type: 'experiments';
     title: string;
     subtitle: string | null;
     group: string;
     projectPath: string;
     category_1: string;
     tags: string[];
-    thumbnail: string;
+    thumbnail: any;
     url: string;
     scope: string[];
     date: string;

@@ -1,6 +1,5 @@
-import { projects } from "../projectData";
+import { getWorkBySlug } from "../projectData";
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import styles from "./page.module.css";
 import ProjectTemplate from "./project-template";
 import ExperimentTemplate from "./experiment-template";
@@ -11,19 +10,19 @@ interface Props {
   };
 }
 
-export default function ProjectPage({ params }: Props) {
-  const project = projects.find((p) => p.id === parseInt(params.id));
+export default async function ProjectPage({ params }: Props) {
+  const work = await getWorkBySlug(params.id);
 
-  if (!project) {
+  if (!work) {
     notFound();
   }
 
   return (
     <div className={styles.container}>
-      {project.group === "project" ? (
-        <ProjectTemplate project={project} />
+      {work._type === "projects" ? (
+        <ProjectTemplate project={work} />
       ) : (
-        <ExperimentTemplate project={project} />
+        <ExperimentTemplate project={work} />
       )}
     </div>
   );

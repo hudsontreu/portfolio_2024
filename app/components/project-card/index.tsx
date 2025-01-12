@@ -1,17 +1,20 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './styles.module.css';
+import { urlForImage } from '../../../sanity/lib/client';
 
 interface ProjectCardProps {
   title: string;
   date: string;
   thumbnailType: 'image' | 'video';
-  thumbnailUrl: string;
+  thumbnailUrl: any; // Sanity image reference
   href: string;
   scope: string[];
 }
 
 export function ProjectCard({ title, date, thumbnailType, thumbnailUrl, href, scope }: ProjectCardProps) {
+  const imageUrl = thumbnailUrl ? urlForImage(thumbnailUrl).url() : '';
+  
   return (
     <Link href={href} className={styles.container}>
       <div className={styles.corners}>
@@ -28,19 +31,19 @@ export function ProjectCard({ title, date, thumbnailType, thumbnailUrl, href, sc
         </div>
         <div className={styles.bottomSection}>
           <div className={styles.scope}>
-              {scope.join(' / ')}
-            </div>
+            {scope.join(' / ')}
+          </div>
           <div className={styles.imageWrapper}>
             {thumbnailType === 'image' ? (
               <Image
-                src={thumbnailUrl}
+                src={imageUrl}
                 alt={title}
                 fill
                 className={styles.image}
               />
             ) : (
               <video
-                src={thumbnailUrl}
+                src={imageUrl}
                 autoPlay
                 loop
                 muted

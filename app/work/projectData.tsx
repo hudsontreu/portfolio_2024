@@ -1,96 +1,80 @@
-interface Project {
-  id: number;
+import { groq } from 'next-sanity';
+import { client } from '../../sanity/lib/client';
+
+export interface Project {
+  _id: string;
+  _type: 'projects';
   title: string;
-  subtitle?: string;  
-  group: 'project' | 'experiment';
-  iframePath?: string;  
-  category_1: 'art' | 'design';
+  slug: { current: string };
+  subtitle: string | null;
+  group: string;
+  category_1: string;
   tags: string[];
+  thumbnail: any;
   thumbnailType: 'image' | 'video';
-  thumbnailUrl: string;
+  url: string;
   scope: string[];
   date: string;
-  credits?: string[];  
-  contributions?: string[];  
+  credits: string | null;
+  contributions: string[];
 }
 
-export const projects: Project[] = [
-    {
-        id: 1,
-        title: "Generative Contemplations",
-        group: "experiment",
-        iframePath: "/iframes/generativeContemplations_p5_rnbo/index.html",
-        category_1: "art",
-        tags: ["web", "real-time software", "generative"],
-        thumbnailType: "image",
-        thumbnailUrl: "/genContemplation_cardImg.png",
-        scope: ["p5.js", "RNBO", "Web Audio API", "JavaScript"],
-        date: "Sep 2024",
-        contributions: []
-    },
-    {
-        id: 2,
-        title: "v.4MP",
-        subtitle: "A Machine Learning Approach to Creating Dynamic Visual Music Systems",
-        group: "project",
-        category_1: "design",
-        tags: ["software"],
-        thumbnailType: "image",
-        thumbnailUrl: "/v.4mp_cardImg.png",
-        scope: ["UX Design", "UI Design", "Software Engineering"],
-        date: "Apr 2024",
-        contributions: []
-    },
-    {
-        id: 3,
-        title: "Accessible Safari",
-        subtitle: "A Sonified Safari Experience for the Vision-Impaired through Real-Time Object Detection and Scene Description",
-        group: "project",
-        category_1: "design",
-        tags: ["software"],
-        thumbnailType: "video",
-        thumbnailUrl: "/p5.mp4",
-        scope: ["UX Design", "UI Design", "Software Engineering"],
-        date: "Dec 2024",
-        credits: ["Gururaj Deshpande", "Rochan Madhusudhan", "Shaam Bala"],
-        contributions: ["Research", "Design", "Sonification"]
-    },
-    {
-        id: 4,
-        title: "Memory Mosaic",
-        subtitle: "Impressions of past, present, asnd future guests are curated into a haunting art exhibition within a hotel lobby.",
-        group: "project",
-        category_1: "art",
-        tags: ["Interactive Installation", "Real-time Software"],
-        thumbnailType: "image",
-        thumbnailUrl: "/reflection.png",
-        scope: ["UX Design", "UI Design", "Software Engineering"],
-        date: "May 2024",
-        contributions: []
-    },
-    {
-        id: 5,
-        title: "Shape Gen",
-        group: "experiment",
-        iframePath: "/iframes/p5_ShapeGen/index.html",
-        category_1: "art",
-        tags: ["web", "real-time software", "generative"],
-        thumbnailType: "image",
-        thumbnailUrl: "/fireBoy.jpg",
-        scope: ["p5.js", "RNBO", "Web Audio API", "JavaScript"],
-        date: "Sep 2024",
-        contributions: []
-    },
-    {
-        id: 6,
-        title: "Shelf Edge",
-        group: "project",
-        category_1: "art",
-        tags: ["web", "real-time software", "generative"],
-        thumbnailType: "video",
-        thumbnailUrl: "/shelfedge_clip_01.mov",
-        scope: ["p5.js", "RNBO", "Web Audio API", "JavaScript"],
-        date: "Sep 2024",
-        contributions: []
-    }
-  ];
+export interface Experiment {
+  _id: string;
+  _type: 'experiments';
+  title: string;
+  slug: { current: string };
+  subtitle: string | null;
+  group: string;
+  projectPath: string;
+  category_1: string;
+  tags: string[];
+  thumbnail: any;
+  thumbnailType: 'image' | 'video';
+  url: string;
+  scope: string[];
+  date: string;
+  credits: string | null;
+  contributions: string[];
+}
+
+export type WorkItem = Project | Experiment;
+
+const workFields = `
+  _id,
+  _type,
+  title,
+  "slug": slug.current,
+  subtitle,
+  group,
+  category_1,
+  tags,
+  thumbnail,
+  thumbnailType,
+  url,
+  scope,
+  date,
+  credits,
+  contributions,
+  projectPath
+`;
+
+export async function getWorks(filter: 'all' | 'project' | 'experiment' = 'all') {
+  const query = filter === 'all' 
+    ? groq`*[_type in ["projects", "experiments"]] | order(date desc) {
+        ${workFields}
+      }`
+    : groq`*[_type == "${filter === 'project' ? 'projects' : 'experiments'}"] | order(date desc) {
+        ${workFields}
+      }`;
+
+  return client.fetch<WorkItem[]>(query);
+}
+
+export async function getWorkBySlug(slug: string) {
+  const query = groq`*[_type in ["projects", "experiments"] && slug.current == $slug][0]{
+    ${workFields}
+  }`;
+  
+  return client.fetch<WorkItem>(query, { slug });
+}
