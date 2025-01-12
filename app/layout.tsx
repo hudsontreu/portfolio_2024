@@ -6,6 +6,7 @@ import { Sidebar } from "./components/sidebar";
 import { ThemeProvider } from "./components/theme-provider";
 import Scribble from "./components/scribble";
 import styles from "./layout.module.css";
+import { SanityLive } from "../sanity/lib/live";
 
 const inter = Inter({
   subsets: ['latin'],
@@ -64,6 +65,7 @@ export default function RootLayout({
             </main>
           </div>
         </ThemeProvider>
+        <SanityLive />
       </body>
     </html>
   );

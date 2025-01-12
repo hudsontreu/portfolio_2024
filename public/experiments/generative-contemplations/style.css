@@ -1,0 +1,56 @@
+@font-face {
+  font-family: 'Source Code Pro';
+  src: url('fonts/SourceCodePro-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(27, 27, 27);
+  font-family: 'Source Code Pro', monospace;
+}
+
+canvas {
+  display: block;
+  border: 2px solid white;
+}
+
+button {
+  width: 180px;
+  height: 48px;
+  color: white;
+  background-color: #898989;
+  border: 2px solid white;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+button:hover {
+  color: red;
+  background-color: #080808;
+  cursor: pointer;
+}
+
+h3 {
+  margin: 0px;
+  padding: 0px;
+}
+
+.libre-barcode-128-text-regular {
+  font-family: "Libre Barcode 128 Text", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.buttons {
+  margin: 16px 0px 16px 0px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 20px;
+  color: white;
+}
+
+
