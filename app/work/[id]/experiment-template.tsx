@@ -11,7 +11,7 @@ interface ExperimentTemplateProps {
     title: string;
     subtitle: string | null;
     group: string;
-    iframePath: string | null;
+    projectPath: string;
     category_1: string;
     tags: string[];
     thumbnail: string;
@@ -28,8 +28,8 @@ export default function ExperimentTemplate({ project }: ExperimentTemplateProps)
 
   const handleIframeError = useCallback((e: React.SyntheticEvent<HTMLIFrameElement, Event>) => {
     console.error('Iframe loading error:', e);
-    console.log('Attempted path:', project.iframePath);
-  }, [project.iframePath]);
+    console.log('Attempted path:', `/experiments/${project.projectPath}/index.html`);
+  }, [project.projectPath]);
 
   const handleFullscreen = useCallback(() => {
     if (!iframeRef.current) return;
@@ -43,7 +43,7 @@ export default function ExperimentTemplate({ project }: ExperimentTemplateProps)
     }
   }, []);
 
-  if (!project.iframePath) return null;
+  if (!project.projectPath) return null;
 
   return (
     <article className={styles.experiment}>
@@ -82,17 +82,19 @@ export default function ExperimentTemplate({ project }: ExperimentTemplateProps)
         </div>
       </header>
 
-      <iframe 
-        ref={iframeRef}
-        src={project.iframePath}
-        className={styles.content}
-        title={project.title}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-        frameBorder="0"
-        sandbox="allow-scripts allow-same-origin allow-forms"
-        loading="lazy"
-        onError={handleIframeError}
-      />
+      {project.projectPath && (
+        <div className={styles.iframeContainer}>
+          <iframe
+            ref={iframeRef}
+            src={`/experiments/${project.projectPath}/index.html`}
+            className={styles.experimentFrame}
+            onError={handleIframeError}
+            title={project.title}
+            loading="lazy"
+            allow="accelerometer; camera; gyroscope; microphone; xr-spatial-tracking"
+          />
+        </div>
+      )}
     </article>
   );
 }
