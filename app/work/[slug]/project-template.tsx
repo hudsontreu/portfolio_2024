@@ -3,23 +3,31 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./project-template.module.css";
+import { PortableText, PortableTextBlock } from '@portabletext/react';
 
 interface ProjectTemplateProps {
   project: {
     _id: string;
-    _type: 'projects';
+    _type: string;
     title: string;
-    subtitle: string | null;
-    group: string;
+    subtitle: string;
+    slug: string;
+    group?: string;
     category_1: string;
     tags: string[];
-    thumbnail: any;
-    thumbnailType: 'image' | 'video';
-    url: string;
+    thumbnail: {
+      asset: {
+        _ref: string;
+      };
+    };
+    thumbnailType: string;
+    url?: string;
     scope: string[];
     date: string;
     credits: string | null;
     contributions: string[];
+    projectPath?: string;
+    details: PortableTextBlock[];
   };
 }
 
@@ -117,8 +125,14 @@ export default function ProjectTemplate({ project }: ProjectTemplateProps) {
               />
             </div>
           </div>
+
+          {/* Project Details Section */}
+          <div>
+            {project.details && <PortableText value={project.details} />}
+          </div>
+
         </div>
-      </div>
+      </div>  
     </article>
   );
 }

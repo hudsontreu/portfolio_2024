@@ -10,7 +10,8 @@ const ALL_WORKS_QUERY = `*[_type in ["projects", "experiments"]] | order(date de
     date,
     thumbnail,
     thumbnailType,
-    scope
+    scope,
+    details
   }`;
   
 const PROJECTS_QUERY = `*[_type == "projects"] | order(date desc) {
@@ -21,7 +22,8 @@ const PROJECTS_QUERY = `*[_type == "projects"] | order(date desc) {
     date,
     thumbnail,
     thumbnailType,
-    scope
+    scope,
+    details
   }`;
   
 const EXPERIMENTS_QUERY = `*[_type == "experiments"] | order(date desc) {

@@ -27,7 +27,8 @@ const CONTENT_QUERY = defineQuery(`*[_type in ["projects", "experiments"] && slu
   date,
   credits,
   contributions,
-  projectPath
+  projectPath,
+  details
 }`);
 
 export default async function ProjectPage({ params }: Props) {

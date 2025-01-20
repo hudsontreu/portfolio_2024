@@ -9,7 +9,6 @@ import styles from './styles.module.css';
 const navItems = [
   { href: '/about', text: 'About' },
   { href: '/work', text: 'Work' },
-  { href: '/web_experiments', text: 'Web Experiments' },
 ];
 
 export function Sidebar() {
