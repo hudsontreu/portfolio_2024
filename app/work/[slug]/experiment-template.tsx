@@ -6,7 +6,7 @@ import { useCallback, useRef } from 'react';
 import styles from "./experiment-template.module.css";
 
 interface ExperimentTemplateProps {
-  project: {
+  experiment: {
     _id: string;
     _type: 'experiments';
     title: string;
@@ -24,13 +24,13 @@ interface ExperimentTemplateProps {
   };
 }
 
-export default function ExperimentTemplate({ project }: ExperimentTemplateProps) {
+export default function ExperimentTemplate({ experiment }: ExperimentTemplateProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const handleIframeError = useCallback((e: React.SyntheticEvent<HTMLIFrameElement, Event>) => {
     console.error('Iframe loading error:', e);
-    console.log('Attempted path:', `/experiments/${project.projectPath}/index.html`);
-  }, [project.projectPath]);
+    console.log('Attempted path:', `/experiments/${experiment.projectPath}/index.html`);
+  }, [experiment.projectPath]);
 
   const handleFullscreen = useCallback(() => {
     if (!iframeRef.current) return;
@@ -44,7 +44,7 @@ export default function ExperimentTemplate({ project }: ExperimentTemplateProps)
     }
   }, []);
 
-  if (!project.projectPath) return null;
+  if (!experiment.projectPath) return null;
 
   return (
     <article className={styles.experiment}>
@@ -56,20 +56,20 @@ export default function ExperimentTemplate({ project }: ExperimentTemplateProps)
         <div className={styles.metadata}>
           <div className={styles.metaItem}>
             <span className={styles.metaLabel}>Title</span>
-            <span className={styles.metaValue}>{project.title}</span>
+            <span className={styles.metaValue}>{experiment.title}</span>
           </div>
           <div className={styles.metaItem}>
             <span className={styles.metaLabel}>Date</span>
-            <span className={styles.metaValue}>{project.date}</span>
+            <span className={styles.metaValue}>{experiment.date}</span>
           </div>
           <div className={styles.metaItem}>
             <span className={styles.metaLabel}>Category</span>
-            <span className={styles.metaValue}>{project.category_1}</span>
+            <span className={styles.metaValue}>{experiment.category_1}</span>
           </div>
           {/* <div className={styles.metaItem}>
             <span className={styles.metaLabel}>Tags</span>
             <span className={styles.metaValue}>
-              {project.tags?.map((tag: string) => (
+              {experiment.tags?.map((tag: string) => (
                 <span key={tag}>{tag}</span>
               ))}
             </span>
@@ -83,14 +83,14 @@ export default function ExperimentTemplate({ project }: ExperimentTemplateProps)
         </div>
       </header>
 
-      {project.projectPath && (
+      {experiment.projectPath && (
         <div className={styles.iframeContainer}>
           <iframe
             ref={iframeRef}
-            src={`/experiments/${project.projectPath}/index.html`}
+            src={`/experiments/${experiment.projectPath}/index.html`}
             className={styles.experimentFrame}
             onError={handleIframeError}
-            title={project.title}
+            title={experiment.title}
             loading="lazy"
             allow="accelerometer; camera; gyroscope; microphone; xr-spatial-tracking"
           />

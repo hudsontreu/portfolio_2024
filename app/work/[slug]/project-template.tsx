@@ -66,7 +66,7 @@ export default function ProjectTemplate({ project }: ProjectTemplateProps) {
 
           <div className={styles.heroImage}>
           <Image
-            src={project.thumbnailUrl}
+            src={project.thumbnail}
             alt={project.title}
             fill
             style={{ objectFit: "cover" }}

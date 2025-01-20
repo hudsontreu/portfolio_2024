@@ -3,78 +3,57 @@
 import { useEffect, useState } from 'react';
 import { ProjectCard } from '../project-card';
 import styles from './styles.module.css';
-import { client } from '../../../sanity/lib/client';
-import { groq } from 'next-sanity';
-
-// Define queries for different filters
-const ALL_WORKS_QUERY = groq`*[_type in ["projects", "experiments"]] | order(date desc) {
-  _id,
-  _type,
-  title,
-  "slug": slug.current,
-  date,
-  thumbnail,
-  thumbnailType,
-  scope
-}`;
-
-const PROJECTS_QUERY = groq`*[_type == "projects"] | order(date desc) {
-  _id,
-  _type,
-  title,
-  "slug": slug.current,
-  date,
-  thumbnail,
-  thumbnailType,
-  scope
-}`;
-
-const EXPERIMENTS_QUERY = groq`*[_type == "experiments"] | order(date desc) {
-  _id,
-  _type,
-  title,
-  "slug": slug.current,
-  date,
-  thumbnail,
-  thumbnailType,
-  scope
-}`;
+import { getAllWorks, getProjects, getExperiments } from '../../lib/data';
 
 interface ProjectGridProps {
   filter: 'all' | 'project' | 'experiment';
 }
 
 export function ProjectGrid({ filter }: ProjectGridProps) {
-  const [works, setWorks] = useState([]);
+  const [works, setWorks] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    async function fetchWorks() {
+    const fetchWorks = async () => {
       setLoading(true);
-      
-      // Choose query based on filter
-      const query = filter === 'all' 
-        ? ALL_WORKS_QUERY 
-        : filter === 'project' 
-          ? PROJECTS_QUERY 
-          : EXPERIMENTS_QUERY;
-
+      setError(null);
       try {
-        const data = await client.fetch(query);
-        console.log('Fetched works:', data);
+        let data;
+        switch (filter) {
+          case 'project':
+            data = await getProjects();
+            break;
+          case 'experiment':
+            data = await getExperiments();
+            break;
+          default:
+            data = await getAllWorks();
+        }
+        console.log(`Fetched ${filter} data:`, data);
         setWorks(data);
       } catch (error) {
         console.error('Error fetching works:', error);
+        setError('Failed to load projects');
+        setWorks([]);
       } finally {
         setLoading(false);
       }
-    }
+    };
 
     fetchWorks();
   }, [filter]);
 
   if (loading) {
     return <div className={styles.loading}>Loading...</div>;
+  }
+
+  if (error) {
+    return <div className={styles.error}>{error}</div>;
+  }
+
+  if (!works || works.length === 0) {
+    return <div className={styles.noResults}>No projects found</div>;
   }
 
   return (
@@ -84,10 +63,10 @@ export function ProjectGrid({ filter }: ProjectGridProps) {
           key={work._id}
           title={work.title}
           date={work.date}
-          thumbnailType={work.thumbnailType}
-          thumbnailUrl={work.thumbnail}
-          href={`/work/${work.slug}`}
-          scope={work.scope}
+          thumbnailType={work.thumbnailType || 'image'}
+          thumbnail={work.thumbnail}
+          slug={work.slug}
+          scope={Array.isArray(work.scope) ? work.scope : [work.scope]}
         />
       ))}
     </div>

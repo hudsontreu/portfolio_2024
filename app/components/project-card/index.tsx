@@ -2,21 +2,22 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './styles.module.css';
 import { urlForImage } from '../../../sanity/lib/client';
+import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 interface ProjectCardProps {
   title: string;
   date: string;
   thumbnailType: 'image' | 'video';
-  thumbnailUrl: any; // Sanity image reference
-  href: string;
+  thumbnail: SanityImageSource;
+  slug: string;
   scope: string[];
 }
 
-export function ProjectCard({ title, date, thumbnailType, thumbnailUrl, href, scope }: ProjectCardProps) {
-  const imageUrl = thumbnailUrl ? urlForImage(thumbnailUrl).url() : '';
+export function ProjectCard({ title, date, thumbnailType, thumbnail, slug, scope }: ProjectCardProps) {
+  const imageUrl = thumbnail ? urlForImage(thumbnail).url() : '';
   
   return (
-    <Link href={href} className={styles.container}>
+    <Link href={`/work/${slug}`} className={styles.container}>
       <div className={styles.corners}>
         <div className={styles.corner} />
         <div className={styles.corner} />
@@ -34,23 +35,25 @@ export function ProjectCard({ title, date, thumbnailType, thumbnailUrl, href, sc
             {scope.join(' / ')}
           </div>
           <div className={styles.imageWrapper}>
-            {thumbnailType === 'image' ? (
-              <Image
-                src={imageUrl}
-                alt={title}
-                fill
-                className={styles.image}
-              />
-            ) : (
-              <video
-                src={imageUrl}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className={styles.image}
-              />
-            )}
+            {thumbnail ? (
+              thumbnailType === 'image' ? (
+                <Image
+                  src={imageUrl}
+                  alt={title}
+                  fill
+                  className={styles.image}
+                />
+              ) : (
+                <video
+                  src={imageUrl}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className={styles.image}
+                />
+              )
+            ) : null}
           </div>
         </div>
       </div>

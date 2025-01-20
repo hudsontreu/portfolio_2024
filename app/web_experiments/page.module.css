@@ -1,0 +1,51 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 2rem var(--page-padding);
+  }
+  
+  .header {
+    padding: var(--page-padding) 0;
+    gap: 2rem;
+  }
+  
+  .description {
+    max-width: 42rem;
+    color: var(--muted-foreground);
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    overflow: visible;
+  }
+  
+  .filterButtons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .projectsContainer {
+    width: 100%;
+    margin: -1.5rem;
+    padding: 1.5rem;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding: 1rem var(--page-padding);
+    }
+  
+    .header {
+      margin-bottom: 1.5rem;
+    }
+  
+    .description {
+      font-size: 1rem;
+    }
+  }
