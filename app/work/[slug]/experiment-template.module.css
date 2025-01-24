@@ -72,10 +72,10 @@
 
 .content {
   flex: 1;
-  background: #0000001f;
   width: 100%;
   border-radius: 2px;
-  /* padding: 8px; */
+  margin: 2rem auto;
+  max-width: 1280px;
 }
 
 .content::-webkit-scrollbar {

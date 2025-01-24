@@ -10,7 +10,7 @@ interface ExperimentTemplateProps {
     _id: string;
     _type: 'experiments';
     title: string;
-    subtitle: string | null;
+    description: string;
     group: string;
     projectPath: string;
     category_1: string;
@@ -19,8 +19,6 @@ interface ExperimentTemplateProps {
     url: string;
     scope: string[];
     date: string;
-    credits: string | null;
-    contributions: string[];
   };
 }
 
@@ -52,50 +50,62 @@ export default function ExperimentTemplate({ experiment }: ExperimentTemplatePro
       <Link href="/work" className={`${styles.backLink} flash-on-hover underline-animation`}>← Work</Link>
       </div>
       
-      <header className={styles.header}>
-        <div className={styles.metadata}>
-          <div className={styles.metaItem}>
-            <span className={styles.metaLabel}>Title</span>
-            <span className={styles.metaValue}>{experiment.title}</span>
-          </div>
-          <div className={styles.metaItem}>
-            <span className={styles.metaLabel}>Date</span>
-            <span className={styles.metaValue}>{experiment.date}</span>
-          </div>
-          <div className={styles.metaItem}>
-            <span className={styles.metaLabel}>Category</span>
-            <span className={styles.metaValue}>{experiment.category_1}</span>
-          </div>
-          {/* <div className={styles.metaItem}>
-            <span className={styles.metaLabel}>Tags</span>
-            <span className={styles.metaValue}>
-              {experiment.tags?.map((tag: string) => (
-                <span key={tag}>{tag}</span>
-              ))}
-            </span>
-          </div> */}
-          <button 
-            className={`${styles.fullscreenButton} underline-animation`}
-            onClick={handleFullscreen}
-          >
-            Enter Fullscreen
-          </button>
-        </div>
-      </header>
+      <div className={styles.content}>
 
-      {experiment.projectPath && (
-        <div className={styles.iframeContainer}>
-          <iframe
-            ref={iframeRef}
-            src={`/experiments/${experiment.projectPath}/index.html`}
-            className={styles.experimentFrame}
-            onError={handleIframeError}
-            title={experiment.title}
-            loading="lazy"
-            allow="accelerometer; camera; gyroscope; microphone; xr-spatial-tracking"
-          />
+        <header className={styles.header}>
+          <div className={styles.metadata}>
+            <div className={styles.metaItem}>
+              <span className={styles.metaLabel}>Title</span>
+              <span className={styles.metaValue}>{experiment.title}</span>
+            </div>
+            <div className={styles.metaItem}>
+              <span className={styles.metaLabel}>Date</span>
+              <span className={styles.metaValue}>{experiment.date}</span>
+            </div>
+            <div className={styles.metaItem}>
+              <span className={styles.metaLabel}>Category</span>
+              <span className={styles.metaValue}>{experiment.category_1}</span>
+            </div>
+            <div className={styles.metaItem}>
+              <span className={styles.metaLabel}>Tags</span>
+              <span className={styles.metaValue}>
+                {experiment.tags?.map((tag: string) => (
+                  <span key={tag}>{tag}</span>
+                ))}
+              </span>
+            </div>
+            <button 
+              className={`${styles.fullscreenButton} underline-animation`}
+              onClick={handleFullscreen}
+            >
+              Enter Fullscreen
+            </button>
+          </div>
+        </header>
+
+        <div className={styles.description_block}>
+          {experiment.description && (
+          <p className={styles.description}>
+            {experiment.description}
+          </p>
+          )}
+          <p>Test Text</p>
         </div>
-      )}
+
+        {experiment.projectPath && (
+          <div className={styles.iframeContainer}>
+            <iframe
+              ref={iframeRef}
+              src={`/experiments/${experiment.projectPath}/index.html`}
+              className={styles.experimentFrame}
+              onError={handleIframeError}
+              title={experiment.title}
+              loading="lazy"
+              allow="accelerometer; camera; gyroscope; microphone; xr-spatial-tracking"
+            />
+          </div>
+        )}
+      </div>
     </article>
   );
 }
