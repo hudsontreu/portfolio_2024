@@ -12,8 +12,9 @@
 
 .metadata {
   display: flex;
-  gap: 2.5rem;
-  align-items: flex-end;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
   padding-bottom: 1rem;
 }
 
@@ -78,9 +79,24 @@
 }
 
 .title h2 {
-  font-size: 1.2rem;
-  color: #666;
-  font-weight: normal;
+  font-size: 1.6rem;
+  color: var(--muted-foreground);
+  font-weight: 600;
+}
+
+.block_1 {
+  display: flex;
+  gap: 2rem;
+}
+
+.block_1 .metadata {
+  flex: 1;
+  max-width: 20%;
+}
+
+.block_1 .description {
+  flex: 2;
+  max-width: 80%;
 }
 
 .description {
@@ -110,6 +126,18 @@
   width: 100%;
   height: auto;
   border-radius: 4px;
+}
+
+.portableImage {
+  margin: 2rem 0;
+  width: 100%;
+}
+
+.portableImage .image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 /* Removed styles */

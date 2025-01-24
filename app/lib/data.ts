@@ -23,6 +23,7 @@ const PROJECTS_QUERY = `*[_type == "projects"] | order(date desc) {
     thumbnail,
     thumbnailType,
     scope,
+    primaryDescription,
     details
   }`;
   

@@ -28,6 +28,7 @@ const CONTENT_QUERY = defineQuery(`*[_type in ["projects", "experiments"] && slu
   credits,
   contributions,
   projectPath,
+  primaryDescription,
   details
 }`);
 

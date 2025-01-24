@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./project-template.module.css";
 import { PortableText, PortableTextBlock } from '@portabletext/react';
+import { urlFor } from "../../../lib/sanity";
 
 interface ProjectTemplateProps {
   project: {
@@ -27,9 +28,28 @@ interface ProjectTemplateProps {
     credits: string | null;
     contributions: string[];
     projectPath?: string;
+    primaryDescription: string;
     details: PortableTextBlock[];
   };
 }
+
+const PortableTextComponents = {
+  types: {
+    image: ({ value }: any) => {
+      return (
+        <div className={styles.portableImage}>
+          <Image
+            src={urlFor(value).url()}
+            alt={value.alt || ' '}
+            width={800}
+            height={500}
+            className={styles.image}
+          />
+        </div>
+      );
+    },
+  },
+};
 
 export default function ProjectTemplate({ project }: ProjectTemplateProps) {
   return (
@@ -38,34 +58,8 @@ export default function ProjectTemplate({ project }: ProjectTemplateProps) {
         <Link href="/work" className={`${styles.backLink} flash-on-hover underline-animation`}>← Work</Link>
       </div>
       
-      <header className={styles.header}>
-        <div className={styles.metadata}>
-          <div className={styles.metaItem}>
-            <span className={styles.metaLabel}>Title</span>
-            <span className={styles.metaValue}>{project.title}</span>
-          </div>
-          <div className={styles.metaItem}>
-            <span className={styles.metaLabel}>Date</span>
-            <span className={styles.metaValue}>{project.date}</span>
-          </div>
-          <div className={styles.metaItem}>
-            <span className={styles.metaLabel}>Category</span>
-            <span className={styles.metaValue}>{project.category_1}</span>
-          </div>
-          {/* <div className={styles.metaItem}>
-            <span className={styles.metaLabel}>Tags</span>
-            <span className={styles.metaValue}>
-              {project.tags?.map((tag: string) => (
-                <span key={tag}>{tag}</span>
-              ))}
-            </span>
-          </div> */}
-        </div>
-      </header>
 
       <div className={styles.content}>
-    
-
         <div className={styles.projectInfo}>
           <div className={styles.title}>
             <h1>{project.title}</h1>
@@ -74,7 +68,7 @@ export default function ProjectTemplate({ project }: ProjectTemplateProps) {
 
           <div className={styles.heroImage}>
           <Image
-            src={project.thumbnail}
+            src={urlFor(project.thumbnail).url()}
             alt={project.title}
             fill
             style={{ objectFit: "cover" }}
@@ -82,53 +76,43 @@ export default function ProjectTemplate({ project }: ProjectTemplateProps) {
           />
         </div>
 
+        {/* Project Description Section */}
+        <div className={styles.block_1}>
+          <div className={styles.metadata}>
+            <div className={styles.metaItem}>
+              <span className={styles.metaLabel}>Title</span>
+              <span className={styles.metaValue}>{project.title}</span>
+            </div>
+            <div className={styles.metaItem}>
+              <span className={styles.metaLabel}>Date</span>
+              <span className={styles.metaValue}>{project.date}</span>
+            </div>
+            <div className={styles.metaItem}>
+              <span className={styles.metaLabel}>Category</span>
+              <span className={styles.metaValue}>{project.category_1}</span>
+            </div>
+            <div className={styles.metaItem}>
+              <span className={styles.metaLabel}>Tags</span>
+              <span className={styles.metaValue}>
+                {project.tags?.map((tag: string) => (
+                  <span key={tag}>{tag}</span>
+                ))}
+              </span>
+            </div>
+          </div>
           <div className={styles.description}>
-            <p>Lorem ipsum dolor sit amet consectetur. In facilisi pharetra proin aliquet dui. Lectus ut elit lectus placerat leo sed nam gravida purus. Nisl euismod congue suspendisse cursus morbi. Id eget nibh sagittis pulvinar pretium tellus aliquam.</p>
-            <p>Lorem ipsum dolor sit amet consectetur. In facilisi pharetra proin aliquet dui. Lectus ut elit lectus placerat leo sed nam gravida purus. Nisl euismod congue suspendisse cursus morbi. Id eget nibh sagittis pulvinar pretium tellus aliquam.</p>
+            <p>{project.primaryDescription}</p>
           </div>
+        </div>
 
-          <div className={styles.gallery}>
-            <div className={styles.galleryImage}>
-              <Image
-                src="/displacement1.jpg"
-                alt="Project image 1"
-                width={600}
-                height={400}
-                style={{ objectFit: "cover" }}
-              />
-            </div>
-            <div className={styles.galleryImage}>
-              <Image
-                src="/reflection.png"
-                alt="Project image 2"
-                width={600}
-                height={400}
-                style={{ objectFit: "cover" }}
-              />
-            </div>
-            <div className={styles.galleryImage}>
-              <Image
-                src="/displacement1.jpg"
-                alt="Project image 3"
-                width={600}
-                height={400}
-                style={{ objectFit: "cover" }}
-              />
-            </div>
-            <div className={styles.galleryImage}>
-              <Image
-                src="/reflection.png"
-                alt="Project image 4"
-                width={600}
-                height={400}
-                style={{ objectFit: "cover" }}
-              />
-            </div>
-          </div>
-
-          {/* Project Details Section */}
+          {/* Rich Text Content */}
           <div>
-            {project.details && <PortableText value={project.details} />}
+            {project.details && (
+              <PortableText 
+                value={project.details} 
+                components={PortableTextComponents}
+              />
+            )}
           </div>
 
         </div>
