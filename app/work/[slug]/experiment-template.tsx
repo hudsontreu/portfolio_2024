@@ -46,7 +46,7 @@ export default function ExperimentTemplate({ experiment }: ExperimentTemplatePro
   return (
     <article className={styles.experiment}>
       <div className={styles.nav}>
-      <Link href="/work" className={`${styles.backLink} flash-on-hover underline-animation`}>← Work</Link>
+      <Link href="/work" className={`${styles.backLink} underline-animation`}>← Work</Link>
       </div>
       
       <div className={styles.content}>

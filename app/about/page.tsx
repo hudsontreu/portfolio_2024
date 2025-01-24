@@ -53,7 +53,7 @@ export default function About() {
             <Link 
               key={link.label} 
               href={link.url} 
-              className={`${styles.socialLink} flash-on-hover`}
+              className={`${styles.socialLink} underline-animation`}
               target="_blank"
               rel="noopener noreferrer"
             >

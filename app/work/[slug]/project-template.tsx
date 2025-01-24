@@ -163,7 +163,7 @@ export default function ProjectTemplate({ project }: ProjectTemplateProps) {
   return (
     <article className={styles.project}>
       <div className={styles.nav}>
-        <Link href="/work" className={`${styles.backLink} flash-on-hover underline-animation`}>← Work</Link>
+        <Link href="/work" className={`${styles.backLink} underline-animation`}>← Work</Link>
       </div>
       
 

@@ -7,6 +7,7 @@
   --tertiary: #D9D1C3;
   --accent-foreground: #FFFFFF;
   --muted: #F3F3F3;
+  --muted-hover: #4a4a4a;
   --muted-foreground: #737373;
   --mid-gray-foreground: #404040;
   --border: #e5e5e5;
@@ -32,6 +33,7 @@
   --accent: #F76B93;
   --accent-foreground: #000000;
   --muted: #1A1A1A;
+  --muted-hover: #c9c9c9;
   --muted-foreground: #A3A3A3;
   --mid-gray-foreground: #404040;
   --border: #262626;

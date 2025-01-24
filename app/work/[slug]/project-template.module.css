@@ -58,6 +58,10 @@
   transition: color 0.2s ease;
 }
 
+.backLink:hover {
+  color: var(--muted-hover);
+}
+
 .heroImage {
   position: relative;
   width: 100%;
