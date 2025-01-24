@@ -2,22 +2,18 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './styles.module.css';
 import { urlForImage } from '../../../sanity/lib/client';
-import { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import { Work } from '../../lib/types';
 
 interface ProjectCardProps {
-  title: string;
-  date: string;
-  thumbnailType: 'image' | 'video';
-  thumbnail: SanityImageSource;
-  slug: string;
-  scope: string[];
+  work: Work;
 }
 
-export function ProjectCard({ title, date, thumbnailType, thumbnail, slug, scope }: ProjectCardProps) {
-  const imageUrl = thumbnail ? urlForImage(thumbnail).url() : '';
+export function ProjectCard({ work }: ProjectCardProps) {
+  const imageUrl = work.thumbnail ? urlForImage(work.thumbnail).url() : '';
+  const scope = Array.isArray(work.scope) ? work.scope : [work.scope];
   
   return (
-    <Link href={`/work/${slug}`} className={styles.container}>
+    <Link href={`/work/${work.slug}`} className={styles.container}>
       <div className={styles.corners}>
         <div className={styles.corner} />
         <div className={styles.corner} />
@@ -27,19 +23,19 @@ export function ProjectCard({ title, date, thumbnailType, thumbnail, slug, scope
       
       <div className={styles.content}>
         <div className={styles.topSection}>
-          <span className={styles.date}>{date}</span>
-          <h2 className={styles.title}>{title}</h2>
+          <span className={styles.date}>{work.date}</span>
+          <h2 className={styles.title}>{work.title}</h2>
         </div>
         <div className={styles.bottomSection}>
           <div className={styles.scope}>
             {scope.join(' / ')}
           </div>
           <div className={styles.imageWrapper}>
-            {thumbnail ? (
-              thumbnailType === 'image' ? (
+            {work.thumbnail ? (
+              work.thumbnailType === 'image' ? (
                 <Image
                   src={imageUrl}
-                  alt={title}
+                  alt={work.title}
                   fill
                   className={styles.image}
                 />
@@ -50,7 +46,7 @@ export function ProjectCard({ title, date, thumbnailType, thumbnail, slug, scope
                   loop
                   muted
                   playsInline
-                  className={styles.image}
+                  className={styles.video}
                 />
               )
             ) : null}

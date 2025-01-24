@@ -13,7 +13,6 @@ interface ExperimentTemplateProps {
     description: string;
     group: string;
     projectPath: string;
-    category_1: string;
     tags: string[];
     thumbnail: any;
     url: string;
@@ -63,10 +62,6 @@ export default function ExperimentTemplate({ experiment }: ExperimentTemplatePro
               <span className={styles.metaValue}>{experiment.date}</span>
             </div>
             <div className={styles.metaItem}>
-              <span className={styles.metaLabel}>Category</span>
-              <span className={styles.metaValue}>{experiment.category_1}</span>
-            </div>
-            <div className={styles.metaItem}>
               <span className={styles.metaLabel}>Tags</span>
               <span className={styles.metaValue}>
                 {experiment.tags?.map((tag: string) => (
@@ -84,6 +79,7 @@ export default function ExperimentTemplate({ experiment }: ExperimentTemplatePro
         </header>
 
         <div className={styles.description_block}>
+          {console.log('Description:', experiment.description)}
           {experiment.description && (
           <p className={styles.description}>
             {experiment.description}

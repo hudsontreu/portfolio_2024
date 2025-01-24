@@ -3,14 +3,16 @@
 import { useEffect, useState } from 'react';
 import { ProjectCard } from '../project-card';
 import styles from './styles.module.css';
-import { getAllWorks, getProjects, getExperiments } from '../../lib/data';
+import { client } from '../../../sanity/lib/client';
+import { LIST_QUERIES } from '../../lib/queries';
+import { Work } from '../../lib/types';
 
 interface ProjectGridProps {
   filter: 'all' | 'project' | 'experiment';
 }
 
 export function ProjectGrid({ filter }: ProjectGridProps) {
-  const [works, setWorks] = useState<any[]>([]);
+  const [works, setWorks] = useState<Work[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -19,17 +21,18 @@ export function ProjectGrid({ filter }: ProjectGridProps) {
       setLoading(true);
       setError(null);
       try {
-        let data;
+        let query;
         switch (filter) {
           case 'project':
-            data = await getProjects();
+            query = LIST_QUERIES.PROJECTS;
             break;
           case 'experiment':
-            data = await getExperiments();
+            query = LIST_QUERIES.EXPERIMENTS;
             break;
           default:
-            data = await getAllWorks();
+            query = LIST_QUERIES.ALL;
         }
+        const data = await client.fetch(query);
         console.log(`Fetched ${filter} data:`, data);
         setWorks(data);
       } catch (error) {
@@ -59,15 +62,7 @@ export function ProjectGrid({ filter }: ProjectGridProps) {
   return (
     <div className={styles.grid}>
       {works.map((work) => (
-        <ProjectCard
-          key={work._id}
-          title={work.title}
-          date={work.date}
-          thumbnailType={work.thumbnailType || 'image'}
-          thumbnail={work.thumbnail}
-          slug={work.slug}
-          scope={Array.isArray(work.scope) ? work.scope : [work.scope]}
-        />
+        <ProjectCard key={work._id} work={work} />
       ))}
     </div>
   );

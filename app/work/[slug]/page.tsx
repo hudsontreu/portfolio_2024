@@ -3,6 +3,7 @@ import { defineQuery } from 'next-sanity';
 import { notFound } from "next/navigation";
 import ProjectTemplate from "./project-template";
 import ExperimentTemplate from "./experiment-template";
+import { DETAIL_QUERIES } from '../../lib/queries';
 import styles from './page.module.css';
 
 interface Props {
@@ -11,26 +12,7 @@ interface Props {
   };
 }
 
-const CONTENT_QUERY = defineQuery(`*[_type in ["projects", "experiments"] && slug.current == $slug][0]{
-  _id,
-  _type,
-  title,
-  subtitle,
-  "slug": slug.current,
-  group,
-  category_1,
-  tags,
-  thumbnail,
-  thumbnailType,
-  url,
-  scope,
-  date,
-  credits,
-  contributions,
-  projectPath,
-  primaryDescription,
-  details
-}`);
+const CONTENT_QUERY = defineQuery(DETAIL_QUERIES.CONTENT);
 
 export default async function ProjectPage({ params }: Props) {
   console.log('Fetching content for slug:', params.slug);
