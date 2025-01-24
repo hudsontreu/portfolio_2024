@@ -42,7 +42,8 @@
 .content {
   flex: 1;
   width: 100%;
-  margin-top: 2rem;
+  margin: 2rem auto;
+  max-width: 1280px;
 }
 
 .nav {
@@ -138,6 +139,135 @@
   height: auto;
   object-fit: cover;
   border-radius: 8px;
+}
+
+.videoWrapper {
+  position: relative;
+  width: 100%;
+  margin: 2rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.video {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.videoCaption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+  text-align: center;
+}
+
+/* Image Gallery Styles */
+.galleryWrapper {
+  margin: 2rem 0;
+  width: 100%;
+}
+
+.gallery2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.gallery3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.gallery4 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.galleryItem {
+  position: relative;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.galleryImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.galleryCaption {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .gallery3,
+  .gallery4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery2,
+  .gallery3,
+  .gallery4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Portable Text Styles */
+.portableText {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin: 1.5rem 0;
+}
+
+.portableH1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 2.5rem 0 1.5rem;
+}
+
+.portableH2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 2rem 0 1.25rem;
+}
+
+.portableH3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 1.75rem 0 1rem;
+}
+
+.portableH4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem;
+}
+
+.portableQuote {
+  border-left: 4px solid #666;
+  font-style: italic;
+  margin: 2rem 0;
+  padding-left: 1.5rem;
+}
+
+.portableList {
+  list-style-type: disc;
+  margin: 1.5rem 0;
+  padding-left: 2rem;
+}
+
+.portableList li {
+  margin: 0.5rem 0;
 }
 
 /* Removed styles */

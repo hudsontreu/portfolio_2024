@@ -34,6 +34,17 @@ interface ProjectTemplateProps {
 }
 
 const PortableTextComponents = {
+  block: {
+    h1: ({children}: any) => <h1 className={styles.portableH1}>{children}</h1>,
+    h2: ({children}: any) => <h2 className={styles.portableH2}>{children}</h2>,
+    h3: ({children}: any) => <h3 className={styles.portableH3}>{children}</h3>,
+    h4: ({children}: any) => <h4 className={styles.portableH4}>{children}</h4>,
+    normal: ({children}: any) => <p className={styles.portableText}>{children}</p>,
+    blockquote: ({children}: any) => <blockquote className={styles.portableQuote}>{children}</blockquote>,
+  },
+  list: {
+    bullet: ({children}: any) => <ul className={styles.portableList}>{children}</ul>,
+  },
   types: {
     image: ({ value }: any) => {
       return (
@@ -48,6 +59,103 @@ const PortableTextComponents = {
         </div>
       );
     },
+    gallery: ({ value }: any) => {
+      if (!value?.images || value.images.length === 0) return null;
+
+      const imageCount = value.images.length;
+      const galleryClassName = styles[`gallery${imageCount}`];
+
+      return (
+        <div className={styles.galleryWrapper}>
+          <div className={galleryClassName}>
+            {value.images.map((image: any, index: number) => (
+              <div key={index} className={styles.galleryItem}>
+                <Image
+                  src={urlFor(image).url()}
+                  alt={image.alt || ` `}
+                  width={800}
+                  height={500}
+                  className={styles.galleryImage}
+                />
+              </div>
+            ))}
+          </div>
+          {value.caption && (
+            <p className={styles.galleryCaption}>{value.caption}</p>
+          )}
+        </div>
+      );
+    },
+    video: ({ value }: any) => {
+      // For URL-based videos (YouTube, etc.)
+      if (value.url) {
+        // Check if it's a YouTube URL
+        const isYouTube = value.url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+        
+        if (isYouTube) {
+          const videoId = isYouTube[1];
+          // YouTube parameters based on options
+          const youtubeParams = new URLSearchParams({
+            autoplay: value.autoplay ? '1' : '0',
+            mute: value.muted ? '1' : '0',
+            loop: value.loop ? '1' : '0',
+            controls: value.hideControls ? '0' : '1',
+            ...(value.loop ? { playlist: videoId } : {}) // Required for looping
+          }).toString();
+
+          return (
+            <div className={styles.videoWrapper}>
+              <iframe
+                width="100%"
+                height="500"
+                src={`https://www.youtube.com/embed/${videoId}?${youtubeParams}`}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+              {value.caption && (
+                <p className={styles.videoCaption}>{value.caption}</p>
+              )}
+            </div>
+          );
+        }
+      }
+
+      // For uploaded video files
+      if (value.file?.asset?._ref) {
+        const videoUrl = `https://cdn.sanity.io/files/${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}/${process.env.NEXT_PUBLIC_SANITY_DATASET}/${value.file.asset._ref
+          .replace('file-', '')
+          .replace('-quicktime', '.mov')
+          .replace('-mp4', '.mp4')
+          .replace('-webm', '.webm')}`;
+
+        return (
+          <div className={styles.videoWrapper}>
+            <video
+              className={styles.video}
+              width="100%"
+              height="auto"
+              playsInline
+              {...(value.autoplay && { autoPlay: true })}
+              {...(value.loop && { loop: true })}
+              {...(!value.hideControls && { controls: true })}
+              {...(value.muted && { muted: true })}
+              {...(value.autoplay && { muted: true })} // Force muted if autoplay is enabled
+            >
+              <source src={videoUrl} type="video/quicktime" />
+              <source src={videoUrl} type="video/mp4" />
+              <source src={videoUrl} type="video/webm" />
+              Your browser does not support the video tag.
+            </video>
+            {value.caption && (
+              <p className={styles.videoCaption}>{value.caption}</p>
+            )}
+          </div>
+        );
+      }
+
+      return null;
+    }
   },
 };
 
