@@ -77,15 +77,15 @@ export default function ExperimentTemplate({ experiment }: ExperimentTemplatePro
             </button>
           </div>
         </header>
+        
 
+        {experiment.description && (    
         <div className={styles.description_block}>
-          {console.log('Description:', experiment.description)}
-          {experiment.description && (
           <p className={styles.description}>
             {experiment.description}
           </p>
-          )}
-        </div>
+          </div>
+        )}
 
         {experiment.projectPath && (
           <div className={styles.iframeContainer}>
