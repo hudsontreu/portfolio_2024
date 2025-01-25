@@ -59,11 +59,13 @@ const PortableTextComponents = {
       return (
         <div className={styles.portableImage}>
           <Image
-            src={urlFor(value).url()}
+            src={urlFor(value).width(1920).quality(100).url()}
             alt={value.alt || ' '}
-            width={800}
-            height={500}
+            width={1920}
+            height={1080}
+            quality={100}
             className={styles.image}
+            priority={true}
           />
         </div>
       );
@@ -80,11 +82,13 @@ const PortableTextComponents = {
             {value.images.map((image: any, index: number) => (
               <div key={index} className={styles.galleryItem}>
                 <Image
-                  src={urlFor(image).url()}
+                  src={urlFor(image).width(1920).quality(100).url()}
                   alt={image.alt || ` `}
-                  width={800}
-                  height={500}
+                  width={1920}
+                  height={1080}
+                  quality={100}
                   className={styles.galleryImage}
+                  priority={true}
                 />
               </div>
             ))}
@@ -208,14 +212,13 @@ export default function ProjectTemplate({ project }: ProjectTemplateProps) {
                 <span className={styles.metaValue}>{project.date}</span>
               </div>
               <div className={styles.metaItem}>
-                <span className={styles.metaLabel}>Category</span>
-                <span className={styles.metaValue}>{project.category_1}</span>
-              </div>
-              <div className={styles.metaItem}>
                 <span className={styles.metaLabel}>Tags</span>
                 <span className={styles.metaValue}>
-                  {project.tags?.map((tag: string) => (
-                    <span key={tag}>{tag}</span>
+                  {project.tags?.map((tag: string, index: number) => (
+                    <span key={tag}>
+                      <span className={styles.metaValue}>{tag}</span>
+                      {index < project.tags.length - 1 ? ', ' : ''}
+                    </span>
                   ))}
                 </span>
               </div>
@@ -226,16 +229,22 @@ export default function ProjectTemplate({ project }: ProjectTemplateProps) {
               <div className={styles.metaItem}>
                 <span className={styles.metaLabel}>Primary Contributions</span>
                 <span className={styles.metaValue}>
-                  {project.contributions?.map((tag: string) => (
-                    <span key={tag}>{tag}</span>
+                  {project.contributions?.map((contribution: string, index: number) => (
+                    <span key={contribution}>
+                      <span className={styles.metaValue}>{contribution}</span>
+                      {index < project.contributions.length - 1 ? ', ' : ''}
+                    </span>
                   ))}
                 </span>
               </div>
               <div className={styles.metaItem}>
                 <span className={styles.metaLabel}>Credits</span>
                 <span className={styles.metaValue}>
-                  {project.credits?.map((tag: string) => (
-                    <span key={tag}>{tag}</span>
+                  {project.credits?.map((credit: string, index: number) => (
+                    <span key={credit}>
+                      <span className={styles.metaValue}>{credit}</span>
+                      {index < project.credits.length - 1 ? ', ' : ''}
+                    </span>
                   ))}
                 </span>
               </div>

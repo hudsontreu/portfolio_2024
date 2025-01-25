@@ -53,12 +53,12 @@
 
 .fullscreenButton {
   font-family: var(--font-mono);
+  color: var(--muted-foreground);
   font-size: 0.9rem;
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
-  color: inherit;
   margin-left: auto;
 }
 
@@ -95,7 +95,7 @@
   position: relative;
   min-height: 70vh;
   background: #000;
-  border-radius: 8px;
+  border-radius: 4px;
   overflow: hidden;
 }
 
@@ -107,4 +107,15 @@
   height: 100%;
   border: none;
   background: #000;
+}
+
+.description_block {
+  border-top: 1px solid var(--secondary);
+}
+
+.description {
+  font-size: 1.1rem;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.5;
+  margin: 2rem 0 1.6rem 0;
 }

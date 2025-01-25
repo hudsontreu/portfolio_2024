@@ -85,7 +85,6 @@ export default function ExperimentTemplate({ experiment }: ExperimentTemplatePro
             {experiment.description}
           </p>
           )}
-          <p>Test Text</p>
         </div>
 
         {experiment.projectPath && (
