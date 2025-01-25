@@ -11,10 +11,8 @@ interface ExperimentTemplateProps {
     _type: 'experiments';
     title: string;
     description: string;
-    group: string;
     projectPath: string;
     tags: string[];
-    thumbnail: any;
     url: string;
     methods: string[];
     date: string;

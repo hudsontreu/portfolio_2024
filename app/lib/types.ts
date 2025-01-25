@@ -6,7 +6,11 @@ export interface Work {
   title: string;
   slug: string;
   date: string;
-  thumbnail: SanityImageSource;
+  headerImage: SanityImageSource;
+  headerVideo?: {
+    _ref: string;
+    url: string;
+  };
   thumbnailType: string;
-  scope: string[];
+  methods: string[];
 }

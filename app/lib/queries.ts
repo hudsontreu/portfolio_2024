@@ -6,7 +6,11 @@ export const LIST_QUERIES = {
     title,
     "slug": slug.current,
     date,
-    thumbnail,
+    headerImage,
+    "headerVideo": headerVideo.asset->{
+      _ref,
+      url
+    },
     thumbnailType,
     methods,
     details
@@ -18,7 +22,11 @@ export const LIST_QUERIES = {
     title,
     "slug": slug.current,
     date,
-    thumbnail,
+    headerImage,
+    "headerVideo": headerVideo.asset->{
+      _ref,
+      url
+    },
     thumbnailType,
     methods,
     primaryDescription,
@@ -31,7 +39,11 @@ export const LIST_QUERIES = {
     title,
     "slug": slug.current,
     date,
-    thumbnail,
+    "headerVideo": headerVideo.asset->{
+      _ref,
+      url
+    },
+    headerVideo,
     thumbnailType,
     methods
   }`
@@ -47,7 +59,11 @@ export const DETAIL_QUERIES = {
     "slug": slug.current,
     group,
     tags,
-    thumbnail,
+    headerImage,
+    "headerVideo": headerVideo.asset->{
+      _ref,
+      url
+    },
     thumbnailType,
     url,
     methods,

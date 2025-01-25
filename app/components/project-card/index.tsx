@@ -9,8 +9,9 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ work }: ProjectCardProps) {
-  const imageUrl = work.thumbnail ? urlForImage(work.thumbnail).url() : '';
-  const scope = Array.isArray(work.scope) ? work.scope : [work.scope];
+  const imageUrl = work.headerImage ? urlForImage(work.headerImage).url() : '';
+  const videoUrl = work.headerVideo?.url || '';
+  const methods = Array.isArray(work.methods) ? work.methods : [work.methods];
   
   return (
     <Link href={`/work/${work.slug}`} className={styles.container}>
@@ -28,27 +29,25 @@ export function ProjectCard({ work }: ProjectCardProps) {
         </div>
         <div className={styles.bottomSection}>
           <div className={styles.scope}>
-            {scope.join(' / ')}
+            {methods.join(' / ')}
           </div>
           <div className={styles.imageWrapper}>
-            {work.thumbnail ? (
-              work.thumbnailType === 'image' ? (
-                <Image
-                  src={imageUrl}
-                  alt={work.title}
-                  fill
-                  className={styles.image}
-                />
-              ) : (
-                <video
-                  src={imageUrl}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className={styles.video}
-                />
-              )
+            {work.thumbnailType === 'image' && work.headerImage ? (
+              <Image
+                src={imageUrl}
+                alt={work.title}
+                fill
+                className={styles.image}
+              />
+            ) : work.thumbnailType === 'video' && work.headerVideo ? (
+              <video
+                src={videoUrl}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className={styles.video}
+              />
             ) : null}
           </div>
         </div>

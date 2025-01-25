@@ -13,10 +13,14 @@ interface ProjectTemplateProps {
     title: string;
     subtitle: string;
     slug: string;
-    group?: string;
     category_1: string;
     tags: string[];
-    thumbnail: {
+    headerImage: {
+      asset: {
+        _ref: string;
+      };
+    };
+    headerVideo?: {
       asset: {
         _ref: string;
       };
@@ -189,7 +193,7 @@ export default function ProjectTemplate({ project }: ProjectTemplateProps) {
 
           <div className={styles.heroImage}>
           <Image
-            src={urlFor(project.thumbnail).url()}
+            src={urlFor(project.headerImage).url()}
             alt={project.title}
             fill
             style={{ objectFit: "cover" }}
