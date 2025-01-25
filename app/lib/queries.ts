@@ -39,11 +39,11 @@ export const LIST_QUERIES = {
     title,
     "slug": slug.current,
     date,
+    headerImage,
     "headerVideo": headerVideo.asset->{
       _ref,
       url
     },
-    headerVideo,
     thumbnailType,
     methods
   }`
