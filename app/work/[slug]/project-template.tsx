@@ -23,7 +23,7 @@ interface ProjectTemplateProps {
     };
     thumbnailType: string;
     url?: string;
-    scope: string[];
+    methods: string[];
     date: string;
     credits: string | null;
     contributions: string[];
@@ -44,6 +44,15 @@ const PortableTextComponents = {
   },
   list: {
     bullet: ({children}: any) => <ul className={styles.portableList}>{children}</ul>,
+  },
+  marks: {
+    link: ({value, children}: any) => {
+      return (
+        <a href={value?.href} className={styles.portableLink} target="_blank" rel="noopener noreferrer">
+          {children}
+        </a>
+      );
+    }
   },
   types: {
     image: ({ value }: any) => {
@@ -186,28 +195,55 @@ export default function ProjectTemplate({ project }: ProjectTemplateProps) {
 
         {/* Project Description Section */}
         <div className={styles.block_1}>
-          <div className={styles.metadata}>
-            <div className={styles.metaItem}>
-              <span className={styles.metaLabel}>Title</span>
-              <span className={styles.metaValue}>{project.title}</span>
+
+          <div className={styles.projectData}>
+
+            <div className={styles.metadata}>
+              <div className={styles.metaItem}>
+                <span className={styles.metaLabel}>Title</span>
+                <span className={styles.metaValue}>{project.title}</span>
+              </div>
+              <div className={styles.metaItem}>
+                <span className={styles.metaLabel}>Date</span>
+                <span className={styles.metaValue}>{project.date}</span>
+              </div>
+              <div className={styles.metaItem}>
+                <span className={styles.metaLabel}>Category</span>
+                <span className={styles.metaValue}>{project.category_1}</span>
+              </div>
+              <div className={styles.metaItem}>
+                <span className={styles.metaLabel}>Tags</span>
+                <span className={styles.metaValue}>
+                  {project.tags?.map((tag: string) => (
+                    <span key={tag}>{tag}</span>
+                  ))}
+                </span>
+              </div>
             </div>
-            <div className={styles.metaItem}>
-              <span className={styles.metaLabel}>Date</span>
-              <span className={styles.metaValue}>{project.date}</span>
+
+            {project.credits && (
+            <div className={styles.metadata}>
+              <div className={styles.metaItem}>
+                <span className={styles.metaLabel}>Primary Contributions</span>
+                <span className={styles.metaValue}>
+                  {project.contributions?.map((tag: string) => (
+                    <span key={tag}>{tag}</span>
+                  ))}
+                </span>
+              </div>
+              <div className={styles.metaItem}>
+                <span className={styles.metaLabel}>Credits</span>
+                <span className={styles.metaValue}>
+                  {project.credits?.map((tag: string) => (
+                    <span key={tag}>{tag}</span>
+                  ))}
+                </span>
+              </div>
             </div>
-            <div className={styles.metaItem}>
-              <span className={styles.metaLabel}>Category</span>
-              <span className={styles.metaValue}>{project.category_1}</span>
-            </div>
-            <div className={styles.metaItem}>
-              <span className={styles.metaLabel}>Tags</span>
-              <span className={styles.metaValue}>
-                {project.tags?.map((tag: string) => (
-                  <span key={tag}>{tag}</span>
-                ))}
-              </span>
-            </div>
+            )}
+
           </div>
+
           <div className={styles.description}>
             <p>{project.primaryDescription}</p>
           </div>

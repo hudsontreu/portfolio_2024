@@ -8,7 +8,7 @@ export const LIST_QUERIES = {
     date,
     thumbnail,
     thumbnailType,
-    scope,
+    methods,
     details
   }`,
   
@@ -20,7 +20,7 @@ export const LIST_QUERIES = {
     date,
     thumbnail,
     thumbnailType,
-    scope,
+    methods,
     primaryDescription,
     details
   }`,
@@ -33,7 +33,7 @@ export const LIST_QUERIES = {
     date,
     thumbnail,
     thumbnailType,
-    scope
+    methods
   }`
 }
 
@@ -50,7 +50,7 @@ export const DETAIL_QUERIES = {
     thumbnail,
     thumbnailType,
     url,
-    scope,
+    methods,
     date,
     credits,
     contributions,

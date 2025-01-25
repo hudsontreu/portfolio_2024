@@ -16,7 +16,7 @@ interface ExperimentTemplateProps {
     tags: string[];
     thumbnail: any;
     url: string;
-    scope: string[];
+    methods: string[];
     date: string;
   };
 }
