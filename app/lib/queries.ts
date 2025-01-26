@@ -14,7 +14,7 @@ export const LIST_QUERIES = {
     thumbnailType,
     tags,
     details,
-    category_1
+    category
   }`,
   
   PROJECTS: `*[_type == "projects"] | order(date desc) {
@@ -32,7 +32,7 @@ export const LIST_QUERIES = {
     tags,
     primaryDescription,
     details,
-    category_1
+    category
   }`,
   
   EXPERIMENTS: `*[_type == "experiments"] | order(date desc) {
@@ -48,7 +48,7 @@ export const LIST_QUERIES = {
     },
     thumbnailType,
     tags,
-    category_1
+    category
   }`,
 
   SIDEBAR_WORKS: `*[_type in ["projects", "experiments"]] | order(date desc) {
@@ -56,7 +56,17 @@ export const LIST_QUERIES = {
     _type,
     title,
     "slug": slug.current,
-    category_1
+    category,
+    "rawCategory": category, // For debugging
+    date,
+    headerImage,
+    "headerVideo": headerVideo.asset->{
+      _ref,
+      url
+    },
+    thumbnailType,
+    tags,
+    details
   }`
 }
 

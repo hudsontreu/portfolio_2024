@@ -12,7 +12,7 @@ type Work = {
   _type: 'projects' | 'experiments';
   title: string;
   slug: string;
-  category_1?: string;
+  category?: string | null;
 };
 
 type WorksByCategory = {
@@ -28,20 +28,24 @@ const CATEGORIES = [
   'Other'
 ];
 
-const getCategoryKey = (categoryDisplay: string): string => {
-  return categoryDisplay
-    .toLowerCase()
-    .replace(/\s+/g, '')
-    .replace(/-/g, '');
+// Map display names to Sanity values
+const CATEGORY_MAP: { [key: string]: string } = {
+  'Software Tools': 'softwareTools',
+  'Installations': 'installations',
+  'Web Experiments': 'webExperiments',
+  'Time-Based Media': 'timeBasedMedia',
+  'SageNet': 'sageNet',
+  'Other': 'other'
 };
 
-const CATEGORY_MAP: { [key: string]: string } = {
-  softwaretools: 'softwareTools',
-  installations: 'installations',
-  webexperiments: 'webExperiments',
-  timebasedmedia: 'timeBasedMedia',
-  sagenet: 'sageNet',
-  other: 'other'
+// Map Sanity values to display names
+const REVERSE_CATEGORY_MAP: { [key: string]: string } = {
+  softwareTools: 'Software Tools',
+  installations: 'Installations',
+  webExperiments: 'Web Experiments',
+  timeBasedMedia: 'Time-Based Media',
+  sageNet: 'SageNet',
+  other: 'Other'
 };
 
 export function WorkContent() {
@@ -52,13 +56,32 @@ export function WorkContent() {
   useEffect(() => {
     const fetchWorks = async () => {
       const works = await client.fetch<Work[]>(LIST_QUERIES.SIDEBAR_WORKS);
+      console.log('Raw fetched works:', works.map(w => ({
+        title: w.title,
+        type: w._type,
+        rawCategory: w.category,
+        slug: w.slug
+      })));
       
       const categorizedWorks = works.reduce((acc: WorksByCategory, work) => {
-        // Handle experiments - they all go to Web Experiments
-        const category = work._type === 'experiments' 
-          ? 'webExperiments' 
-          : work.category_1 || 'other';
+        let category: string;
+        
+        if (work._type === 'experiments') {
+          category = 'webExperiments';
+        } else if (!work.category) {
+          category = 'other';
+        } else {
+          // The category from Sanity should already match our keys
+          category = work.category;
+        }
           
+        console.log(`Work "${work.title}":`, {
+          type: work._type,
+          rawCategory: work.category,
+          mappedCategory: category,
+          displayName: REVERSE_CATEGORY_MAP[category] || 'Unknown'
+        });
+        
         if (!acc[category]) {
           acc[category] = [];
         }
@@ -66,6 +89,13 @@ export function WorkContent() {
         return acc;
       }, {});
 
+      console.log('Works by category:', Object.entries(categorizedWorks).map(([cat, works]) => ({
+        category: cat,
+        displayName: REVERSE_CATEGORY_MAP[cat],
+        count: works.length,
+        titles: works.map(w => w.title)
+      })));
+      
       setWorksByCategory(categorizedWorks);
     };
 
@@ -75,8 +105,15 @@ export function WorkContent() {
   return (
     <div className={styles.workContent}>
       {CATEGORIES.map((categoryDisplay, categoryIndex) => {
-        const categoryKey = CATEGORY_MAP[getCategoryKey(categoryDisplay)];
+        const categoryKey = CATEGORY_MAP[categoryDisplay];
         const works = worksByCategory[categoryKey] || [];
+
+        console.log(`Checking category "${categoryDisplay}" (key: ${categoryKey}):`, {
+          works: works.map(w => ({
+            title: w.title,
+            rawCategory: w.category
+          }))
+        });
 
         if (works.length === 0) return null;
 
