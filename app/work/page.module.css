@@ -11,10 +11,11 @@
 }
 
 .description {
-  max-width: 42rem;
+  max-width: 80%;
   color: var(--muted-foreground);
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   line-height: 1.6;
+  margin-bottom: 1rem;
 }
 
 .content {

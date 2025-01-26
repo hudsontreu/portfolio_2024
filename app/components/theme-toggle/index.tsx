@@ -10,18 +10,15 @@ export function ThemeToggle() {
   return (
     <div className={styles.container}>
       <button
-        onClick={() => setTheme('light')}
-        className={`${styles.button} ${theme === 'light' ? styles.active : ''}`}
-        aria-label="Switch to light theme"
+        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+        className={styles.button}
+        aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
       >
-        <Sun className={styles.icon} />
-      </button>
-      <button
-        onClick={() => setTheme('dark')}
-        className={`${styles.button} ${theme === 'dark' ? styles.active : ''}`}
-        aria-label="Switch to dark theme"
-      >
-        <Moon className={styles.icon} />
+        {theme === 'dark' ? (
+          <Sun className={styles.icon} />
+        ) : (
+          <Moon className={styles.icon} />
+        )}
       </button>
     </div>
   );

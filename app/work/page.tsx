@@ -27,10 +27,8 @@ export default function WorkPage() {
     <div className={styles.container}>
       <div className={styles.header}>
         <p className={styles.description}>
-          ⌭⎈∰⎊⎌⎍ ⎎∯∱⎏⎐⎑ ⎒∲∳ ⎓⎔⎕ ⎖∴∵ ⎗⎘⎙ ⎚∶∷ ⎛⎜⎝ ⎞∸∹ ⎟⎠⎡
-          ⌭⎈∰⎊⎌⎍ ⎎∯∱⎏⎐⎑ ⎒∲∳ ⎓⎔⎕ ⎖∴∵ ⎗⎘⎙ ⎚∶∷ ⎛⎜⎝ ⎞∸∹ ⎟⎠⎡
-          ⌭⎈∰⎊⎌⎍ ⎎∯∱⎏⎐⎑ ⎒∲∳ ⎓⎔⎕ ⎖∴∵ ⎗⎘⎙ ⎚∶∷ ⎛⎜⎝⌭⎈∰⎊⎌⎍ ⎎∯∱⎏⎐⎑ ⎒∲∳
-          ⎔⎕ ⎖∴∵ ⎗⎘⎙ ⎚∶∷ ⎛⎜⎝⌭⎈∰⎊⎌⎍⎛⎜⎝⌭⎈∰⎊⎌⎍⎛⎜⎝
+          Below are selected works including software design, software, development, and various forms of artworks.
+          Experiments are web based and run in real-time in the browser.
         </p>
       </div>
       <div className={styles.content}>

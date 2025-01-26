@@ -136,6 +136,7 @@
   flex: 1;
   min-height: 0;
   overflow: hidden;
+  min-height: 150px;
 }
 
 .image, .video {
@@ -154,6 +155,7 @@
 }
 
 .date {
+  font-family: var(--font-mono);
   font-size: 0.875rem;
   opacity: 0.8;
   text-transform: uppercase;
@@ -170,11 +172,19 @@
 }
 
 .scope {
-  font-size: 0.875rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
   opacity: 0.8;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 1rem;
+  height: 2.4em;
+  line-height: 1.2;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
 }
 
 .placeholderImage {

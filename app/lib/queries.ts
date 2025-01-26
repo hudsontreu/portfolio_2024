@@ -12,7 +12,7 @@ export const LIST_QUERIES = {
       url
     },
     thumbnailType,
-    methods,
+    tags,
     details
   }`,
   
@@ -28,7 +28,7 @@ export const LIST_QUERIES = {
       url
     },
     thumbnailType,
-    methods,
+    tags,
     primaryDescription,
     details
   }`,
@@ -45,7 +45,7 @@ export const LIST_QUERIES = {
       url
     },
     thumbnailType,
-    methods
+    tags
   }`
 }
 

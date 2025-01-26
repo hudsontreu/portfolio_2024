@@ -42,7 +42,7 @@
   font-size: 2.25rem; /* equivalent to text-4xl */
   font-family: var(--font-archive);
   font-weight: 700;
-  color: var(--foreground)
+  color: var(--foreground);
 }
 
 .nav {

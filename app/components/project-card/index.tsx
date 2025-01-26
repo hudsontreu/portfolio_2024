@@ -11,7 +11,7 @@ interface ProjectCardProps {
 export function ProjectCard({ work }: ProjectCardProps) {
   const imageUrl = work.headerImage ? urlForImage(work.headerImage).url() : '';
   const videoUrl = work.headerVideo?.url || '';
-  const methods = Array.isArray(work.methods) ? work.methods : [work.methods];
+  const tags = Array.isArray(work.tags) ? work.tags : [work.tags];
   
   return (
     <Link href={`/work/${work.slug}`} className={styles.container}>
@@ -29,7 +29,7 @@ export function ProjectCard({ work }: ProjectCardProps) {
         </div>
         <div className={styles.bottomSection}>
           <div className={styles.scope}>
-            {methods.join(' / ')}
+            {tags.join(' / ')}
           </div>
           <div className={styles.imageWrapper}>
             {work.thumbnailType === 'image' && work.headerImage ? (

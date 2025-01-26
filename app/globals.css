@@ -99,7 +99,7 @@ a {
 }
 
 button:hover {
-  animation: flashText 0.06s steps(2, start) infinite;
+  /* animation: flashText 0.06s steps(2, start) infinite; */
   text-decoration: none;
 }
 
