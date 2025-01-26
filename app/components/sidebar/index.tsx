@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useEffect } from 'react';
 import { Time } from '../time';
 import { ThemeToggle } from '../theme-toggle';
 import { WorkContent } from './work-content';
@@ -12,12 +13,24 @@ const navItems = [
   { href: '/work', text: 'Work' },
 ];
 
-export function Sidebar() {
+interface SidebarProps {
+  isOpen?: boolean;
+  onClose?: () => void;
+}
+
+export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname();
   const isWorkPath = pathname === '/work' || pathname.startsWith('/work/');
 
+  // Close sidebar on navigation on mobile
+  useEffect(() => {
+    if (onClose) {
+      onClose();
+    }
+  }, [pathname, onClose]);
+
   return (
-    <aside className={styles.sidebar}>
+    <aside className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
       <div className={styles.container}>
         <div className={styles.topSection}>
           <div className={styles.controls}>

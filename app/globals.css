@@ -24,7 +24,13 @@
   --font-sans: var(--font-inter);
   --font-mono: var(--font-roboto-mono);
 
+  /* Layout */
+  --sidebar-width: 260px;
   --page-padding: 2rem;
+
+  /* Breakpoints */
+  --breakpoint-tablet: 1024px;
+  --breakpoint-mobile: 768px;
 }
 
 [data-theme="dark"] {
@@ -122,4 +128,22 @@ button:hover {
 
 .underline-animation:hover::after {
   transform: scaleX(1);
+}
+
+/* Media Queries */
+@media (max-width: 1024px) {
+  :root {
+    --page-padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --page-padding: 1rem;
+  }
+
+  body {
+    overflow-x: hidden;
+    position: relative;
+  }
 }

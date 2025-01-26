@@ -1,12 +1,8 @@
-import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Inter, Roboto_Mono } from 'next/font/google';
 import "./globals.css";
-import { Sidebar } from "./components/sidebar";
-import { ThemeProvider } from "./components/theme-provider";
-import Scribble from "./components/scribble";
-import styles from "./layout.module.css";
-import { SanityLive } from "../sanity/lib/live";
+import { LayoutWrapper } from "./components/layout-wrapper";
+import { metadata } from './metadata';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -38,34 +34,21 @@ const archiveGrotesk = localFont({
   variable: '--font-archive',
 });
 
-export const metadata: Metadata = {
-  title: "Hudson Treu",
-  description: "Design Technologist",
-};
+export { metadata };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${robotoMono.variable} ${archiveGrotesk.variable}`}>
-        <ThemeProvider
-          attribute="data-theme"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Scribble />
-          <div className={styles.layout}>
-            <Sidebar />
-            <main className={styles.main}>
-              {children}
-            </main>
-          </div>
-        </ThemeProvider>
-        <SanityLive />
+    <html lang="en">
+      <body
+        className={`${inter.variable} ${robotoMono.variable} ${archiveGrotesk.variable}`}
+      >
+        <LayoutWrapper>
+          {children}
+        </LayoutWrapper>
       </body>
     </html>
   );

@@ -1,12 +1,32 @@
 .layout {
   display: flex;
   min-height: 100vh;
-  padding-left: 256px; /* Same as sidebar width */
+  padding-left: var(--sidebar-width);
 }
 
 .main {
   flex: 1;
   display: flex;
   flex-direction: column;
-  /* margin: 0 40px; */
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .layout {
+    padding-left: 0;
+    padding-top: 60px; /* Height of mobile header */
+  }
+
+  .main {
+    width: 100%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .layout {
+    padding-top: 60px;
+  }
 }
