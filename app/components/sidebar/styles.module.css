@@ -3,13 +3,13 @@
   top: 0;
   left: 0;
   min-height: 100vh;
-  width: 256px; /* equivalent to w-64 */
-  background-color: var(--background);
+  width: 260px; /* equivalent to w-64 */
+  background-color: var(--muted);
   /* border-right: 1px solid var(--border); */
 }
 
 .container {
-  padding: 1.5rem; /* equivalent to p-6 */
+  padding: 1.75rem; /* equivalent to p-6 */
   display: flex;
   flex-direction: column;
   gap: 1.5rem; /* equivalent to space-y-6 */
@@ -46,7 +46,7 @@
 }
 
 .nav {
-  padding: 0 1rem;
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
@@ -90,4 +90,96 @@
 .navLink span {
   position: relative;
   z-index: 1;
+}
+
+.workContent {
+  padding: 0 0 0 1.25rem;
+  overflow-y: auto;
+  animation: slideDown 0.6s ease forwards;
+  transform-origin: top;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+.categorySection {
+  margin-bottom: 1rem;
+  animation: fadeIn 0.3s ease forwards;
+  animation-delay: calc(var(--category-index, 0) * 0.05s);
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.categoryTitle {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.workList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.workList li {
+  margin-bottom: 0.25rem;
+  opacity: 0;
+  animation: fadeIn 0.3s ease forwards;
+  animation-delay: calc((var(--item-index, 0) * 0.05s) + (var(--category-index, 0) * 0.05s));
+}
+
+.workLink {
+  color: var(--muted-foreground);
+  text-decoration: none;
+  font-size: 0.825rem;
+  transition: color 0.2s ease;
+  position: relative;
+  display: inline-block;
+}
+
+.workLink::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  top: 50%;
+  left: 0;
+  background-color: var(--accent);
+  transition: width 0.3s ease;
+  transform: translateY(-50%);
+}
+
+.workLink:hover {
+  color: var(--foreground);
+}
+
+.workLink:hover::after {
+  width: 100%;
+}
+
+.activeWorkLink {
+  color: var(--foreground);
+}
+
+.activeWorkLink::after {
+  width: 100%;
 }

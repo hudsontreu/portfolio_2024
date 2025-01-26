@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2rem;
+  /* width: 2rem; */
   height: 2rem;
   border-radius: 0.375rem;
   background: none;
@@ -18,7 +18,7 @@
 
 .button:hover {
   color: var(--foreground);
-  background-color: var(--muted);
+  /* background-color: var(--muted); */
 }
 
 .active {

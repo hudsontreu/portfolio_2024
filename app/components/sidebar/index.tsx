@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Time } from '../time';
 import { ThemeToggle } from '../theme-toggle';
+import { WorkContent } from './work-content';
 import styles from './styles.module.css';
 
 const navItems = [
@@ -13,6 +14,7 @@ const navItems = [
 
 export function Sidebar() {
   const pathname = usePathname();
+  const isWorkPath = pathname === '/work' || pathname.startsWith('/work/');
 
   return (
     <aside className={styles.sidebar}>
@@ -29,20 +31,27 @@ export function Sidebar() {
             </div>
           </Link>
         </div>
+        <nav className={styles.nav}>
+          {navItems.map((item) => {
+            const isActive = item.href === '/work' 
+              ? isWorkPath 
+              : pathname === item.href;
+              
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`${styles.navLink} ${
+                  isActive ? styles.activeLink : ''
+                }`}
+              >
+                <span className="flash-on-hover">{item.text}</span>
+              </Link>
+            );
+          })}
+        </nav>
+        {isWorkPath && <WorkContent />}
       </div>
-      <nav className={styles.nav}>
-        {navItems.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            className={`${styles.navLink} ${
-              pathname === item.href ? styles.activeLink : ''
-            }`}
-          >
-            <span className="flash-on-hover">{item.text}</span>
-          </Link>
-        ))}
-      </nav>
     </aside>
   );
 }

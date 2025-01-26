@@ -13,7 +13,8 @@ export const LIST_QUERIES = {
     },
     thumbnailType,
     tags,
-    details
+    details,
+    category_1
   }`,
   
   PROJECTS: `*[_type == "projects"] | order(date desc) {
@@ -30,7 +31,8 @@ export const LIST_QUERIES = {
     thumbnailType,
     tags,
     primaryDescription,
-    details
+    details,
+    category_1
   }`,
   
   EXPERIMENTS: `*[_type == "experiments"] | order(date desc) {
@@ -45,7 +47,16 @@ export const LIST_QUERIES = {
       url
     },
     thumbnailType,
-    tags
+    tags,
+    category_1
+  }`,
+
+  SIDEBAR_WORKS: `*[_type in ["projects", "experiments"]] | order(date desc) {
+    _id,
+    _type,
+    title,
+    "slug": slug.current,
+    category_1
   }`
 }
 
