@@ -111,7 +111,7 @@
 }
 
 .categorySection {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   animation: fadeIn 0.3s ease forwards;
   animation-delay: calc(var(--category-index, 0) * 0.05s);
   opacity: 0;
@@ -129,8 +129,10 @@
 }
 
 .categoryTitle {
+  font-family: var(--font-mono);
+  color: var(--muted-foreground);
   font-weight: 600;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
   font-size: 0.875rem;
 }
 
@@ -148,7 +150,8 @@
 }
 
 .workLink {
-  color: var(--muted-foreground);
+  font-family: var(--font-mono);
+  color: var(--foreground);
   text-decoration: none;
   font-size: 0.825rem;
   transition: color 0.2s ease;
@@ -214,3 +217,5 @@
     padding: 0 1rem;
   }
 }
+
+
