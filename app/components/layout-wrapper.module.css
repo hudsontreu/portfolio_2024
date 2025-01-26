@@ -1,0 +1,16 @@
+.container {
+  min-height: 100vh;
+}
+
+.main {
+  padding: 2rem var(--page-padding);
+  margin-left: var(--sidebar-width);
+}
+
+/* Tablet and Mobile */
+@media (max-width: 1024px) {
+  .main {
+    margin-left: 0;
+    padding-top: calc(60px + 2rem); /* Account for mobile header height */
+  }
+}

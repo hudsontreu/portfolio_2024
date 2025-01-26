@@ -10,11 +10,11 @@
 }
 
 .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   height: 100%;
   padding: 0 var(--page-padding);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .nameContainer {
@@ -38,57 +38,39 @@
 .controls {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
-.menuButton {
+.nav {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
+  gap: 1.5rem;
 }
 
-.menuIcon {
+.navLink {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--foreground);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   position: relative;
-  width: 1.25rem;
-  height: 2px;
-  background-color: var(--foreground);
-  transition: background-color 0.3s ease;
 }
 
-.menuIcon::before,
-.menuIcon::after {
+.navLink::after {
   content: '';
   position: absolute;
-  width: 1.25rem;
-  height: 2px;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
   background-color: var(--foreground);
-  transition: transform 0.3s ease;
+  transition: width 0.3s ease;
 }
 
-.menuIcon::before {
-  transform: translateY(-6px);
-}
-
-.menuIcon::after {
-  transform: translateY(6px);
-}
-
-.menuButton.active .menuIcon {
-  background-color: transparent;
-}
-
-.menuButton.active .menuIcon::before {
-  transform: rotate(45deg);
-}
-
-.menuButton.active .menuIcon::after {
-  transform: rotate(-45deg);
+.navLink:hover::after,
+.activeLink::after {
+  width: 100%;
 }
 
 /* Tablet and Mobile */
