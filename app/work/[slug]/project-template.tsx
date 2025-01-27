@@ -228,7 +228,7 @@ export default function ProjectTemplate({ project }: ProjectTemplateProps) {
               </div>
             </div>
 
-            {project.credits && (
+            {/* {project.credits && (
             <div className={styles.metadata}>
               <div className={styles.metaItem}>
                 <span className={styles.metaLabel}>Primary Contributions</span>
@@ -253,7 +253,7 @@ export default function ProjectTemplate({ project }: ProjectTemplateProps) {
                 </span>
               </div>
             </div>
-            )}
+            )} */}
 
           </div>
 

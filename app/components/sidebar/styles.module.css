@@ -4,7 +4,7 @@
   left: 0;
   min-height: 100vh;
   width: var(--sidebar-width);
-  background-color: var(--muted);
+  /* background-color: var(--muted); */
   z-index: 40;
 }
 

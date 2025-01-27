@@ -6,6 +6,14 @@
   margin: 0 auto;
 }
 
+/* Large screens - 2 cards per row */
+@media (max-width: 1220px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 900px;
+  }
+}
+
 /* Tablet view - 2 cards per row */
 @media (max-width: 1024px) {
   .grid {
