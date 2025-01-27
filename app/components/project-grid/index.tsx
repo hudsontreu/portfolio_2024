@@ -61,8 +61,10 @@ export function ProjectGrid({ filter }: ProjectGridProps) {
 
   return (
     <div className={styles.grid}>
-      {works.map((work) => (
-        <ProjectCard key={work._id} work={work} />
+      {works.map((work, index) => (
+        <div key={work._id} className={styles.gridItem}>
+          <ProjectCard work={work} />
+        </div>
       ))}
     </div>
   );
