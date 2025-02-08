@@ -110,7 +110,7 @@
   display: flex;
   align-items: flex-start;
   gap: 2.5rem;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 
 .projectData {
@@ -324,7 +324,7 @@
 .portableH2 {
   font-size: 2.1rem;
   font-weight: 800;
-  margin: 4rem 0 1.25rem;
+  margin: 5rem 0 -1.6rem 0;
   color: var(--foreground);
 }
 
@@ -333,13 +333,13 @@
   font-weight: 700;
   margin: 2rem 0 0 0;
   padding: 0;
-  color: var(--accent);
+  /* color: var(--accent); */
 }
 
 .portableH4 {
   font-size: 1.25rem;
-  font-weight: 600;
-  margin: 1.5rem 0 0 0;
+  font-weight: 700;
+  margin: 3.2rem 0 0 0;
 }
 
 .portableQuote {
