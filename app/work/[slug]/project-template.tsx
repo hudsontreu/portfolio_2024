@@ -5,6 +5,7 @@ import Link from "next/link";
 import styles from "./project-template.module.css";
 import { PortableText, PortableTextBlock } from '@portabletext/react';
 import { urlFor } from "../../../lib/sanity";
+import { useEffect, useState } from "react";
 
 interface ProjectTemplateProps {
   project: {
@@ -29,7 +30,7 @@ interface ProjectTemplateProps {
     url?: string;
     methods: string[];
     date: string;
-    credits: string | null;
+    credits: string[];
     contributions: string[];
     projectPath?: string;
     primaryDescription: string;
@@ -179,7 +180,20 @@ const PortableTextComponents = {
   },
 };
 
-export default function ProjectTemplate({ project }: ProjectTemplateProps) {
+const ProjectTemplate = ({ project }: ProjectTemplateProps) => {
+  const [isTablet, setIsTablet] = useState(false);
+
+  useEffect(() => {
+    const checkIfTablet = () => {
+      setIsTablet(window.innerWidth <= 1024);
+    };
+    
+    checkIfTablet();
+    window.addEventListener('resize', checkIfTablet);
+    
+    return () => window.removeEventListener('resize', checkIfTablet);
+  }, []);
+
   return (
     <article className={styles.project}>
       <div className={styles.nav}>
@@ -245,7 +259,7 @@ export default function ProjectTemplate({ project }: ProjectTemplateProps) {
                 </span>
               </div>
               <div className={styles.metaItem}>
-                <span className={styles.metaLabel}>Primary Contributions</span>
+                <span className={styles.metaLabel}>{isTablet ? 'Contributions' : 'Primary Contributions'}</span>
                 <span className={styles.metaValue}>
                   {project.contributions?.map((contribution: string, index: number) => (
                     <span key={contribution}>
@@ -280,3 +294,5 @@ export default function ProjectTemplate({ project }: ProjectTemplateProps) {
     </article>
   );
 }
+
+export default ProjectTemplate;

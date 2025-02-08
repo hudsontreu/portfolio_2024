@@ -287,8 +287,14 @@
     gap: 1.5rem;
   }
 
-  .projectData {
+  /* Override all projectData widths at this breakpoint */
+  .projectData,
+  .block_1:has(.metadata + .metadata) .projectData {
+    flex-direction: column;
     min-width: 100%;
+    max-width: 100%;
+    width: 100%;
+    gap: 0;
   }
 }
 
@@ -304,7 +310,7 @@
 
   .metaItem {
     flex-direction: row;
-    gap: 0.5rem;
+    gap: 1rem;
   }
 
   .metaLabel {
