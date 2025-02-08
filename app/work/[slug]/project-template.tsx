@@ -71,6 +71,9 @@ const PortableTextComponents = {
             className={styles.image}
             priority={true}
           />
+          {value.caption && (
+            <p className={styles.imageCaption}>{value.caption}</p>
+          )}
         </div>
       );
     },

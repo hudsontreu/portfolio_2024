@@ -200,6 +200,13 @@
   text-align: center;
 }
 
+.imageCaption {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
 /* Image Gallery Styles */
 .galleryWrapper {
   margin: 2rem 0;
