@@ -231,19 +231,8 @@ export default function ProjectTemplate({ project }: ProjectTemplateProps) {
               </div>
             </div>
 
-            {/* {project.credits && (
+            {project.credits && (
             <div className={styles.metadata}>
-              <div className={styles.metaItem}>
-                <span className={styles.metaLabel}>Primary Contributions</span>
-                <span className={styles.metaValue}>
-                  {project.contributions?.map((contribution: string, index: number) => (
-                    <span key={contribution}>
-                      <span className={styles.metaValue}>{contribution}</span>
-                      {index < project.contributions.length - 1 ? ', ' : ''}
-                    </span>
-                  ))}
-                </span>
-              </div>
               <div className={styles.metaItem}>
                 <span className={styles.metaLabel}>Credits</span>
                 <span className={styles.metaValue}>
@@ -255,8 +244,19 @@ export default function ProjectTemplate({ project }: ProjectTemplateProps) {
                   ))}
                 </span>
               </div>
+              <div className={styles.metaItem}>
+                <span className={styles.metaLabel}>Primary Contributions</span>
+                <span className={styles.metaValue}>
+                  {project.contributions?.map((contribution: string, index: number) => (
+                    <span key={contribution}>
+                      <span className={styles.metaValue}>{contribution}</span>
+                      {index < project.contributions.length - 1 ? ', ' : ''}
+                    </span>
+                  ))}
+                </span>
+              </div>
             </div>
-            )} */}
+            )} 
 
           </div>
 
