@@ -1,30 +1,49 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import GlslCanvas from 'glslCanvas';
 import styles from './styles.module.css';
 import { fragmentShader } from './frag';
 
-const images = [
-  "/shader_assets/flowers.jpg",
-  "/shader_assets/mem.png",
-  "/shader_assets/emory.png",
-  "/shader_assets/conf.png",
-  "/shader_assets/u.png"
-];
-
-const imageLabels = [
-  "Generative Art",
-  "Memory Palace",
-  "Emory University",
-  "Conference",
-  "Universes"
+const projectData = [
+  {
+    image: "/heroArt_assets/flowers.jpg",
+    label: "Generative Flowers",
+    url: ""  // Not clickable
+  },
+  {
+    image: "/heroArt_assets/memoryMosaic_3.png",
+    label: "Memory Mosaic",
+    url: "/work/memory-mosaic"
+  },
+  {
+    image: "/heroArt_assets/emory.png",
+    label: "Emory University",
+    url: ""
+  },
+  {
+    image: "/heroArt_assets/confusingButWorthit_1.png",
+    label: "Confusing But Worth It",
+    url: ""
+  },
+  {
+    image: "/heroArt_assets/generativeContemplations_1.png",
+    label: "Generative Contemplations",
+    url: "/work/generative-contemplations"
+  },
+  {
+    image: "/heroArt_assets/gatherTheForest_1.jpg",
+    label: "Gather the Forest",
+    url: "/work/gather-the-forest"
+  }
 ];
 
 const TRANSITION_DURATION = 1.5; // seconds for fade transition
 const IMAGE_DURATION = 4.0; // seconds to show each image
 
 export default function HeroArt3() {
+  const router = useRouter();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const sandboxRef = useRef<any>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
@@ -40,8 +59,8 @@ export default function HeroArt3() {
     sandbox.load(fragmentShader);
 
     // Set initial images
-    sandbox.setUniform("image", images[currentImageIndex]);
-    sandbox.setUniform("nextImage", images[nextImageIndex]);
+    sandbox.setUniform("image", projectData[currentImageIndex].image);
+    sandbox.setUniform("nextImage", projectData[nextImageIndex].image);
     sandbox.setUniform("blend", 0.0);
 
     // Set canvas size with proper scaling
@@ -96,7 +115,7 @@ export default function HeroArt3() {
         } else {
           // Transition complete, update indices
           setCurrentImageIndex(nextImageIndex);
-          setNextImageIndex((nextImageIndex + 1) % images.length);
+          setNextImageIndex((nextImageIndex + 1) % projectData.length);
           setIsTransitioning(false);
         }
       };
@@ -119,18 +138,30 @@ export default function HeroArt3() {
   // Update next image when indices change
   useEffect(() => {
     if (sandboxRef.current) {
-      sandboxRef.current.setUniform("image", images[currentImageIndex]);
-      sandboxRef.current.setUniform("nextImage", images[nextImageIndex]);
+      sandboxRef.current.setUniform("image", projectData[currentImageIndex].image);
+      sandboxRef.current.setUniform("nextImage", projectData[nextImageIndex].image);
     }
   }, [currentImageIndex, nextImageIndex]);
 
   return (
     <div className={styles.container}>
-      <div className={styles.textOverlay}>
+      <div 
+        className={styles.textOverlay} 
+        onClick={() => {
+          const url = projectData[currentImageIndex].url;
+          if (!url) return; // Do nothing if no URL
+          if (url.startsWith('/')) {
+            router.push(url);
+          } else {
+            window.open(url, '_blank');
+          }
+        }} 
+        style={{ cursor: projectData[currentImageIndex].url ? 'pointer' : 'default' }}
+      >
         <span className={styles.imageNumber}>{(currentImageIndex + 1).toString().padStart(2, '0')}</span>
         <span className={styles.separator}>/</span>
-        <span className={styles.totalImages}>{images.length.toString().padStart(2, '0')}</span>
-        <h3 className={styles.imageLabel}>{imageLabels[currentImageIndex]}</h3>
+        <span className={styles.totalImages}>{projectData.length.toString().padStart(2, '0')}</span>
+        <h3 className={styles.imageLabel}>{projectData[currentImageIndex].label}</h3>
       </div>
       <canvas ref={canvasRef} className={styles.canvas} />
       <div ref={cursorRef} className={styles.customCursor} />
